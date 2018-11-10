@@ -1,0 +1,37 @@
+#!/bin/bash
+function echo_message(){
+  local color=$1
+  local message=$2
+
+  if ! [[ $color =~ '^[0-9]' ]]; then
+    case $(echo -e $color | tr '[:upper:]' '[:lower:]') in
+      header) color=0 ;;
+      error) color=1 ;;
+      success) color=2 ;;
+      welcome) color=3 ;;
+      title) color=4 ;;
+      info) color=5 ;;
+      question) color=6 ;;
+      warning) color=202 ;;
+      *) color=7 ;;
+    esac
+  fi 
+
+  tput bold
+  tput setaf $color
+  echo '-- '$message
+  tput sgr0
+}
+
+function test_echo_message(){
+echo_message header aaaaa
+echo_message error aaaaa
+echo_message success aaaaa
+echo_message welcome aaaaa
+echo_message title aaaaa
+echo_message info aaaaa
+echo_message question aaaaa
+echo_message warning aaaaa
+}
+
+

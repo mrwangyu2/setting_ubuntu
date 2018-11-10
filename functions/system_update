@@ -1,0 +1,5 @@
+#!/bin/bash
+function system_update(){
+  echo_message header "Starting system_update function"
+
+}
