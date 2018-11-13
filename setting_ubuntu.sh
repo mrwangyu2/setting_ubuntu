@@ -13,6 +13,7 @@ function main(){
          $LINES $COLUMNS $(( $LINES - 12 )) \
          "system_update"     "Update software source." \
          "install_apps"      "Install preferred applications" \
+         "install_clang"      "Install clang" \
          "download_tar_packages" "Download preferred tar packages" \
          "system_configure"  "Configure system evironment" \
          3>&1 1>&2 2>&3)

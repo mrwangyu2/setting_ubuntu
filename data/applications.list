@@ -1,7 +1,9 @@
 build-essential
+libncurses5-dev
 tmux
 tree
 zsh
 autojump
 ctags
 cscope
+libboost-all-dev

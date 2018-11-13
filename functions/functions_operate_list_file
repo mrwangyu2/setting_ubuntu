@@ -1,9 +1,5 @@
 #!/bin/bash
 
-function pause_process(){
-  read -p "Press anything to continue."
-}
-
 # $1 = Name
 # $2 = list-name
 # $3 = return_function
@@ -56,7 +52,6 @@ function git_clone_from_list(){
       --scrolltext \
       3>&1 1>&2 2>&3) then
     
-    #for PACKAGE in $(cat $LIST); do
     cat "$LIST" | while read PACKAGE
     do
         echo_message warning "Package $PACKAGE is not installed. Installing..."
@@ -97,7 +92,7 @@ function download_tar_packages_from_list(){
       FILE_NAME=${URL##*/}
       if ! [[ -f "./download/$FILE_NAME" ]]; then
         echo_message warning "$FILE_NAME is not downloaded Downloading..."
-	wget -P ./download $URL
+	wget -P ./downloads $URL
         if [[ $? != 0 ]]; then
           echo_message error "Error downloading $URL"
           pause_process

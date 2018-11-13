@@ -1,5 +1,41 @@
 #!/bin/bash
+
+function update_apps(){
+  superuser_do "apt install cmake"
+  superuser_do "apt install python-dev"
+  superuser_do "apt install python3-dev"
+}
+
 function configure_vim(){
+  VIM_PACKAGE="./downloads/vim-8.1.tar.bz2"
+  VIM_PATH="./downloads/vim81"
+
   echo_message title "Starting configure vim..."
 
+  update_apps
+
+  if [[ -f $VIM_PACKAGE ]]; then
+    rm -rf $VIM_PATH
+    tar xjvf $VIM_PACKAGE -C "./downloads"
+
+    if [[ -d $VIM_PATH ]]; then
+      cd "$VIM_PATH"
+      ./configure --enable-cscope  --enable-pythoninterp --with-python-config-dir=/usr/lib/python2.7
+
+      pause_process
+
+      make clean
+      make
+
+      superuser_do "make install"
+      superuser_do "rm /usr/bin/vim && ln -s /usr/local/bin/vim"
+
+      superuser_do "vim +PluginInstall +qall" 
+    else
+      echo_message error"Error: $VIM_PATH is not existence! :("
+    fi
+  else
+    echo_message error "Error: $VIM_PACKAGE is not existence :("
+    pause_process
+  fi
 }

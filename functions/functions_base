@@ -1,5 +1,9 @@
 #!/bin/bash
 
+function pause_process(){
+  read -p "Press anything to continue."
+}
+
 # $1 tar package name
 function decompress_tar(){
   echo_message title "decompress tar"
