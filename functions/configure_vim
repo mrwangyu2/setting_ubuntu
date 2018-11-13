@@ -1,0 +1,5 @@
+#!/bin/bash
+function configure_vim(){
+  echo_message title "Starting configure vim..."
+
+}

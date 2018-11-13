@@ -6,5 +6,5 @@ function install_apps(){
 
 function download_tar_packages(){
   echo_message header "Starting download tar packages function."
-
+  download_tar_packages_from_list "download tar packages" "preferred_tar_packages" main
 }

@@ -10,7 +10,7 @@ function system_configure(){
             --cancel-button "Go Back" \
             $LINES $COLUMNS $(( $LINES - 12 )) \
             'configure_zsh'   'Configure zsh' \
-            '2'   'Configure vim' \
+            'configure_vim'   'Configure vim' \
             3>&1 1>&2 2>&3)
 
   if [[ $? = 0 ]]; then
