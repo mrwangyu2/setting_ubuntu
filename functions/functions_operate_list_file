@@ -20,6 +20,7 @@ function install_from_list(){
         echo_message warning "Package $PACKAGE is not installed. Installing..."
         superuser_do "apt install -y $PACKAGE"
         if [[ $? != 0 ]]; then
+          pause_process	  
           echo_message error "Error installing $PACKAGE"
         fi
       else

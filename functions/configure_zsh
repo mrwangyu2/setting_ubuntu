@@ -5,10 +5,10 @@ function configure_zsh(){
   echo_message header "Starting configure_zsh fucntions"
   check_zsh_for_oh-my
   if [[ $? = 0 ]]; then
-    change_shell_to_zsh 
-    intall_oh-my-zsh
+    install_oh-my-zsh
   fi
   setting_zsh
+  change_shell_to_zsh
 }
 
 function check_zsh_for_oh-my(){
@@ -36,10 +36,15 @@ function change_shell_to_zsh(){
 }
 
 function install_oh-my-zsh(){
+  echo_message header "Starting install_oh-my-zsh function"
   sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" 
   
   if [[ $? = 0 ]]; then
     echo_message success "oh-my-zsh installed. :)"
+    if [[ $OS = "Raspbain" ]]; then
+      sudo cp -rf /root/.oh-my-zsh/ /home/pi/.
+      echo_message info "copy oh-my-zsh to pi from root directory"
+    fi
   fi 
   pause_process
 }
@@ -61,6 +66,12 @@ function setting_zsh(){
 function git_clone_zsh_plugins(){
   TITLE='zsh plugins...'
   echo_message title "Clone $TITLE" 
+  if [[ $ZSH_CUSTOM = "" ]]; then
+    if [[ $OS = "Raspbain" ]]; then
+      export ZSH_CUSTOM="/home/pi"
+      echo_message info "ZSH_CUSTOM=$ZSH_CUSTOM"
+    fi
+  fi
   git_clone_from_list "$TITLE" 'zsh_git_clone'
 }
 

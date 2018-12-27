@@ -19,19 +19,56 @@ function check_os(){
 } 
 
 function check_distribution(){
+  echo_message header "Staring check_distribution function"
   if [[ $(which lsb_release &>/dev/null; echo $?) != 0 ]]; then
     echo_message error "\a Can't check distribution you are using!"
     echo_message error "Aborting!" && sleep 3 && exit 99
   else
-    if lsb_release -ds | grep -qE '(Ubuntu)'; then
+    if lsb_release -ds | grep -qE '(Ubuntu)' || lsb_release -ds | grep -qE 'Raspbian'; then
       echo_message info "Current distribution is :"
       lsb_release -a
       echo_message success "Your OS is correct! :D"
+      which_os
+      if [[ $? = 1 ]]; then
+        echo_message error "Distributon is not compatibility! :("
+	exit 99
+      fi
     else
       echo_message error "You are using a distribution that may not be compatible with this script set. :("
       exit 99
     fi
   fi
+}
+
+function which_os(){
+  echo_message header "Starting which_os function"
+  
+  is_valid_os "Ubuntu" 
+  if [[ $? = 0 ]]; then
+    export OS="Ubuntu"
+    return 0
+  fi
+
+  is_valid_os "Raspbian"
+  if [[ $? = 0 ]]; then
+    export OS="Raspbain"
+    return 0
+  fi
+
+  return 1
+}
+
+# $1="Ubuntu" or "Raspbian"
+function is_valid_os(){
+    echo_message header "Starting is_valid_os function"
+
+    lsb_release -ds | grep -qE "$1"
+    if [[ $? = 0 ]]; then
+      export OS=$1
+      return 0
+    else
+      return 1
+    fi
 }
 
 function check_privileges(){

@@ -1,28 +1,45 @@
 #/bin/bash
 
-TITLE="Setting Ubuntu16.04 Server LTS"
+TITLE="Linux"
+LINES=20
+COLUMNS=50
+
+function initialize_os(){
+  echo_message header "Starting initialize_os function"
+  if [[ $OS = "Ubuntu" ]]; then
+    TITLE="Setting Ubuntu16.04 Server LTS"
+    return
+  elif [[ $OS = "Raspbain" ]]; then
+    TITLE="Setting Raspberry Pi"
+    LINES=20
+    return
+  fi
+}
 
 function main(){
   echo_message header "Starting main function"
 
-  MAIN=$(eval `resize` && whiptail \
-         --notags \
+  initialize_os 
+
+  MAIN=$(eval 'whiptail \
+	 --notags \
          --title "$TITLE" \
          --menu "\nWhat would you like to do?" \
          --cancel-button "Quit" \
-         $LINES $COLUMNS $(( $LINES - 12 )) \
+         $LINES $COLUMNS $(( $LINES -12 )) \
          "system_update"     "Update software source." \
          "install_apps"      "Install preferred applications" \
          "install_clang"      "Install clang" \
          "download_tar_packages" "Download preferred tar packages" \
          "system_configure"  "Configure system evironment" \
-         3>&1 1>&2 2>&3)
+         3>&1 1>&2 2>&3')
 
   if [[ $? = 0 ]]; then
     echo_message header "Starting $MAIN function"
     $MAIN
   else
     echo_message info "Quit"
+    #pause_process
     exit 99
   fi
 
