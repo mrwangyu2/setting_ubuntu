@@ -8,3 +8,4 @@ ctags
 cscope
 libboost-all-dev
 subversion
+ack
