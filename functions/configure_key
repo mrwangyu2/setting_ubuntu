@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function change_caplock_control_key() {
+  xmodmap -e "remove_Lock = Control_L"
+  xmodmap -e "add control = Control_L"
+}
+
