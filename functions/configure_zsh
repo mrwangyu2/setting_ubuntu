@@ -15,14 +15,14 @@ function check_zsh_for_oh-my(){
   if [[ $(check_package_installed zsh) != 0 ]]; then
    echo_message error "zsh isn't installed, after insall it and try again."
    pause_process
-   return 1; 
+   return 1;
   else
     if [[ -d ~/.oh-my-zsh  ]]; then
       echo_message error "oh-my-zsh is existion"
       pause_process
       return 1;
     else
-      if [[ $SHELL = 'bin/zsh' ]]; then
+      if [[ $SHELL = '/usr/bin/zsh' ]]; then
         pause_process
         return 1;
       fi
@@ -32,20 +32,20 @@ function check_zsh_for_oh-my(){
 }
 
 function change_shell_to_zsh(){
-  superuser_do "chsh -s /bin/zsh"
+  superuser_do "chsh -s /usr/bin/zsh"
 }
 
 function install_oh-my-zsh(){
   echo_message header "Starting install_oh-my-zsh function"
-  sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" 
-  
+  sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
   if [[ $? = 0 ]]; then
     echo_message success "oh-my-zsh installed. :)"
     if [[ $OS = "Raspbain" ]]; then
       sudo cp -rf /root/.oh-my-zsh/ /home/pi/.
       echo_message info "copy oh-my-zsh to pi from root directory"
     fi
-  fi 
+  fi
   pause_process
 }
 
@@ -65,7 +65,7 @@ function setting_zsh(){
 
 function git_clone_zsh_plugins(){
   TITLE='zsh plugins...'
-  echo_message title "Clone $TITLE" 
+  echo_message title "Clone $TITLE"
   if [[ $ZSH_CUSTOM = "" ]]; then
     if [[ $OS = "Raspbain" ]]; then
       export ZSH_CUSTOM="/home/pi"
@@ -79,23 +79,23 @@ function get_all_zsh_plugins(){
   LIST=$(dirname "$0")/data/zsh_plugins.list
   for PLUGIN in $(cat $LIST); do
       ALL_PLUGINS="${ALL_PLUGINS} $PLUGIN"
-  done  
+  done
   echo_message info "Plugins: $ALL_PLUGINS"
 }
 
 function setting_zsh_plugins(){
   if [[ -f ~/.zshrc ]]; then
-    echo_message title "Setting zsh plugins." 
+    echo_message title "Setting zsh plugins."
     line=$(sed -n '/^plugins=(/=' ~/.zshrc)
     line=$(( line + 1))
     echo_message info "line: ${line}"
     sed -i "${line}s/.*/${ALL_PLUGINS}/g" ~/.zshrc
+
     pause_process
   else
     echo_message error "Error: .zshrc isn't existion."
     pause_process
   fi
 }
-
 
 
