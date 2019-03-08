@@ -30,17 +30,17 @@ if count(g:bundle_groups, 'general')
     Bundle 'mileszs/ack.vim'
   endif
   "Plugin 'itchyny/calendar.vim'
-  "Plugin 'Lokaltog/vim-easymotion'
+  Plugin 'Lokaltog/vim-easymotion'
   "Plugin 'editorconfig/editorconfig-vim'
   "Plugin 'Stormherz/tablify'
   "Plugin 'bling/vim-airline'
   "Plugin 'vim-airline/vim-airline-themes'
-  "Plugin 'ctrlpvim/ctrlp.vim'
+  Plugin 'ctrlpvim/ctrlp.vim'
   "Plugin 'terryma/vim-multiple-cursors'
   "Plugin 'mbbill/undotree'
   "Plugin 'Konfekt/FastFold'
   "Plugin 'mhinz/vim-startify'
-  "Plugin 'troydm/easybuffer.vim'
+  Plugin 'troydm/easybuffer.vim'
   "Plugin 'yonchu/accelerated-smooth-scroll'
   "Plugin 'pelodelfuego/vim-swoop'
   "Plugin 'chrisbra/vim-diff-enhanced'
@@ -68,7 +68,9 @@ if count(g:bundle_groups, 'devel')
   Plugin 'mhinz/vim-signify'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'vim-syntastic/syntastic'
-  Plugin 'majutsush/tagbar'
+  "Plugin 'majutsush/tagbar'
+  Plugin 'vim-scripts/cscope.vim'
+  Plugin 'vim-scripts/taglist.vim'
 endif
 " LANGUAGES
 if count(g:bundle_groups, 'languages')

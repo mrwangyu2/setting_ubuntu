@@ -16,7 +16,8 @@
   let g:airline#extensions#hunks#enabled = 1
   let g:airline#extensions#ctrlp#show_adjacent_modes = 1
   let g:airline#extensions#whitespace#enabled = 1
-  let g:airline_theme='base16'
+  "let g:airline_theme='base16'
+  let g:airline_theme='dark'
   let g:airline_left_sep = ''
   let g:airline_right_sep = ''
   if GUI()
@@ -71,9 +72,11 @@
         \ }
 
 " easymotion
-  let g:EasyMotion_leader_key = 'e'
+  "let g:EasyMotion_leader_key = 'e'
   hi link EasyMotionTarget ErrorMsg
   hi link EasyMotionShade  Comment
+  map <Leader>m <Plug>(easymotion-bd-f)
+  "nmap <Leader>m <Plug>(easymotion-overwin-f)
 
 " emmet
   let g:user_emmet_leader_key = '!'
@@ -140,8 +143,12 @@
 
 "syntastic for clang
   let g:syntastic_cpp_compiler='clang++'
-  let g:syntastic_cpp_compiler_options=' -std=c++11 -stdlib=libc++ -I/home/frank/go-nebulas/nbre/lib/include'
+  let g:syntastic_cpp_compiler_options=' -std=c++11 -stdlib=libc++ -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7'
   "let g:syntastic_cpp_include_dirs='/home/frank/go-nebulas/nbre/lib/include'
+
+" YouComleteMe
+"let g:ycm_global_ycm_extra_conf = ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py "配置全局路径
+"let g:ycm_confirm_extra_conf=0   每次直接加载该文件，不提示是否要加载
 
 " tabularize
   nmap <leader>a& :Tabularize /&<CR>
@@ -235,3 +242,9 @@
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+  " ack
+  let g:ackprg = 'ag --nogroup --nocolor --colum'
+
+  " taglist
+  map <C-i> :Tlist<CR>
+  let Tlist_Use_Right_Window = 1
