@@ -215,7 +215,12 @@ nmap ,o :call OpenOther()
 
 
 function! Formatonsave()
-  let l:formatdiff = 1
-  pyf /usr/share/vim/addons/syntax/clang-format-6.0.py
+  "let l:formatdiff = 1
+  "pyf /usr/share/vim/addons/syntax/clang-format-6.0.py
 endfunction
 autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+
+set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
+set termencoding=utf-8
+set encoding=utf-8
+
