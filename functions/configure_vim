@@ -31,19 +31,21 @@ function configure_vim(){
 
     if [[ -d $VIM_PATH ]]; then
       cd "$VIM_PATH"
-      ./configure --enable-cscope  --enable-pythoninterp --with-python-config-dir=/usr/lib/python2.7
+      #./configure --enable-cscope  --enable-pythoninterp --with-python-config-dir=/usr/lib/python2.7
+      ./configure --enable-cscope  --enable-python3interp --with-python-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu
 
       pause_process
 
       make clean
       make
 
+      superuser_do "make uninstall"
       superuser_do "make install"
       superuser_do "rm /usr/bin/vim && ln -s /usr/local/bin/vim"
 
       config_vim_script
 
-      vim +PluginInstall +qall
+      #vim +PluginInstall +qall
     else
       echo_message error"Error: $VIM_PATH is not existence! :("
     fi

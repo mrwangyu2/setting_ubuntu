@@ -143,11 +143,11 @@
 
 "syntastic for clang
   let g:syntastic_cpp_compiler='clang++'
-  let g:syntastic_cpp_compiler_options=' -std=c++14 -stdlib=libc++ -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7'
+  let g:syntastic_cpp_compiler_options=' -std=c++17 -stdlib=libc++ -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7'
   "let g:syntastic_cpp_include_dirs='/home/frank/go-nebulas/nbre/lib/include'
 
 " YouComleteMe
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py' "配置全局路径
+"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py' "配置全局路径
 "let g:ycm_confirm_extra_conf=0   每次直接加载该文件，不提示是否要加载
 
 " tabularize
@@ -244,6 +244,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py' "配置全局路�
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
   " ack
   let g:ackprg = 'ag --nogroup --nocolor --colum'
+  nnoremap <Leader>a :Ack!<Space>
 
   " taglist
   map <C-i> :Tlist<CR>

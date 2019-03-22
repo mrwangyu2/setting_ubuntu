@@ -42,7 +42,7 @@ if count(g:bundle_groups, 'general')
   "Plugin 'mhinz/vim-startify'
   Plugin 'troydm/easybuffer.vim'
   "Plugin 'yonchu/accelerated-smooth-scroll'
-  "Plugin 'pelodelfuego/vim-swoop'
+  Plugin 'pelodelfuego/vim-swoop'
   "Plugin 'chrisbra/vim-diff-enhanced'
 endif
 " DEVELOPER
