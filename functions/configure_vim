@@ -10,6 +10,7 @@ function config_vim_script(){
  VIM_SCRIPT_PATH="./data/vim_script"
 
  mkdir -p ~/.vim
+ superuser_do cp -rf $VIM_SCRIPT_PATH/* ~/.vim/.
 
  if [[ -d $VIM_SCRIPT_PATH ]]; then
    cp -r $VIM_SCRIPT_PATH/* ~/.vim/.
