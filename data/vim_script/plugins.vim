@@ -104,6 +104,7 @@
   let g:NERDTreeIgnore=[
         \'\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
         \ '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$' ]
+  let g:NERDTreeQuitOnOpen = 1
 
 " rainbow parentheses
   let g:rainbow_active = 1
@@ -249,3 +250,7 @@
   " taglist
   map <C-i> :Tlist<CR>
   let Tlist_Use_Right_Window = 1
+  let Tlist_WinWidth = 50
+
+  " vim-maximizer
+  map <C-m> : MaximizerToggle<CR>
