@@ -248,9 +248,11 @@
   nnoremap <Leader>a :Ack!<Space>
 
   " taglist
-  map <C-i> :Tlist<CR>
+  map <C-i> :TlistOpen<CR>
   let Tlist_Use_Right_Window = 1
   let Tlist_WinWidth = 50
+  let Tlist_Close_On_Select = 1
 
   " vim-maximizer
-  map <C-m> : MaximizerToggle<CR>
+  "map <C-m> : MaximizerToggle<CR>
+  map <C-m> <C-W>_<C-W><bar>
