@@ -45,6 +45,8 @@ function configure_vim(){
       superuser_do "make install"
       superuser_do "rm /usr/bin/vim && ln -s /usr/local/bin/vim"
 
+      cd ../../
+
       config_vim_script
 
       #vim +PluginInstall +qall
