@@ -72,6 +72,9 @@ if count(g:bundle_groups, 'devel')
   Plugin 'vim-scripts/cscope.vim'
   Plugin 'vim-scripts/taglist.vim'
   Plugin 'vim-scripts/a.vim'
+  Plugin 'vim-scripts/vim-maximizer'
+  Plugin 'tmux-plugins/vim-tmux'
+  Plugin 'christoomey/vim-tmux-navigator'
 endif
 " LANGUAGES
 if count(g:bundle_groups, 'languages')

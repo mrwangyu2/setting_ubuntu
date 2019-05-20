@@ -177,7 +177,8 @@
   let g:undotree_SetFocusWhenToggle=1
 
 " vim-over
-  nnoremap <C-h> :OverCommandLine<CR>%s/<C-r><C-w>/
+  "nnoremap <C-h> :OverCommandLine<CR>%s/<C-r><C-w>/
+  nnoremap <leader>h :OverCommandLine<CR>%s/<C-r><C-w>/
 
 " deoplete
   let deoplete_readme=expand('~/.vim/bundle/deoplete.nvim/README.md')
