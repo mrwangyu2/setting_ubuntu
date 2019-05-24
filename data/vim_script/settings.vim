@@ -108,11 +108,15 @@ elseif &t_Co >= 256
   hi Comment ctermfg=bg ctermbg=240
   hi Comment guifg=#585858 guibg=bg
 else
-  colorscheme gruvbox
-  set t_Co=8
+  "colorscheme gruvbox
+"colorscheme evening
+  "set t_Co=8
+  colorscheme koehler
+  set t_Co=256
   set t_Sf=^[[3%p1%dm
   set t_Sb=^[[4%p1%dm
 endif
+
 
 " GUI options
 if GUI()
@@ -127,7 +131,8 @@ if GUI()
   elseif OSX()
     set gfn=Liberation_Mono_for_Powerline:h13
   else
-    set gfn=Roboto\ Mono\ Medium\ 13
+    set gfn=DejaVu_Sans_Mono_for_Powerline:h10
+    "set gfn=Roboto\ Mono\ Medium\ 13
   endif
   nmap <F8> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 endif
@@ -223,4 +228,8 @@ autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
 set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
 set termencoding=utf-8
 set encoding=utf-8
+
+" vim-maximizer
+"map <C-m> : MaximizerToggle<CR>
+map <C-m> <C-W>_<C-W><bar>
 

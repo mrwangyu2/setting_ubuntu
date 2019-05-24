@@ -20,7 +20,8 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin Groups
 " List only the plugin groups you will use
 if !exists('g:bundle_groups')
-  let g:bundle_groups=['general', 'devel', 'languages', 'colorscheme']
+  "let g:bundle_groups=['general', 'devel', 'languages', 'colorscheme']
+  let g:bundle_groups=['general', 'devel', 'languages']
 endif
 
 " Plugins here:
@@ -33,8 +34,9 @@ if count(g:bundle_groups, 'general')
   Plugin 'Lokaltog/vim-easymotion'
   "Plugin 'editorconfig/editorconfig-vim'
   "Plugin 'Stormherz/tablify'
-  "Plugin 'bling/vim-airline'
-  "Plugin 'vim-airline/vim-airline-themes'
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
+  Plugin 'powerline/powerline'
   Plugin 'ctrlpvim/ctrlp.vim'
   "Plugin 'terryma/vim-multiple-cursors'
   "Plugin 'mbbill/undotree'
@@ -75,6 +77,7 @@ if count(g:bundle_groups, 'devel')
   Plugin 'vim-scripts/vim-maximizer'
   Plugin 'tmux-plugins/vim-tmux'
   Plugin 'christoomey/vim-tmux-navigator'
+  "Plugin 'dracula/vim'
 endif
 " LANGUAGES
 if count(g:bundle_groups, 'languages')
@@ -90,6 +93,7 @@ endif
 if count(g:bundle_groups, 'colorscheme')
   Plugin 'morhetz/gruvbox'
   Plugin 'sjl/badwolf'
+"Plugin 'altercation/vim-colors-solarized'
 endif
 
 " automatically load filetype plugins

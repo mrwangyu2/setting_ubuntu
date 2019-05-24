@@ -1,6 +1,7 @@
 " PLUGINS CONFIG
 " gruvbox
-  let g:gruvbox_contrast_dark='hard'
+  "let g:gruvbox_contrast_dark='hard'
+  let g:gruvbox_contrast_dark='medium'
 
 " autoformat
   noremap <F3> :Autoformat<CR><CR>
@@ -10,6 +11,12 @@
   let g:airline_detect_paste=1
   let g:airline_inactive_collapse=1
   let g:airline_powerline_fonts = 1
+  "let g:Powerline_symbols='DejaVu'
+  set guifont=PowerlineSymbols\ for\ Powerline
+  set nocompatible
+  let g:Powerline_symbols='fancy'
+  "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
+    "set gfn=DejaVu_Sans_Mono_for_Powerline:h10
   "let g:bufferline_echo = 0
   "let g:airline#extensions#bufferline#enabled = 1
   let g:airline#extensions#syntastic#enabled = 1
@@ -17,7 +24,9 @@
   let g:airline#extensions#ctrlp#show_adjacent_modes = 1
   let g:airline#extensions#whitespace#enabled = 1
   "let g:airline_theme='base16'
+  "let g:airline_theme='simple'
   let g:airline_theme='dark'
+  "let g:airline_theme='deus'
   let g:airline_left_sep = ''
   let g:airline_right_sep = ''
   if GUI()
@@ -31,6 +40,7 @@
       let g:airline_symbols.linenr = ''
     endif
   endif
+  "set t_Co=256
 
 " buffergator
   nmap <silent><leader>b :EasyBufferHorizontal<CR>
@@ -254,6 +264,10 @@
   let Tlist_WinWidth = 50
   let Tlist_Close_On_Select = 1
 
-  " vim-maximizer
-  "map <C-m> : MaximizerToggle<CR>
-  map <C-m> <C-W>_<C-W><bar>
+  " bad wolf
+  "let g:badwolf_darkgutter = 1
+  "let g:badwolt_tabline = 2
+  "set t_Co=256
+
+  " quit vim
+  map <Leader>q :qa!<CR>
