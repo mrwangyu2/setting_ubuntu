@@ -2,8 +2,8 @@ session_name : develop ctp
 windows:
   - window_name: edit
     panes:
-      - j CTP && vim
-      - pwd
+      - j new && cd CTP-Sonic-Tails && vim *.cpp
+      - j new && cd CTP-Sonic-Tails
   - window_name: command
     panes:
       - null
