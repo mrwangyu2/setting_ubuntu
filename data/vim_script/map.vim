@@ -21,7 +21,7 @@ nmap <silent> <Space> za
 vmap <silent> <Space> zf
 
 " enable/disable list
-"nmap <silent> <C-l> :set nolist!<CR>
+nmap <silent> <C-l> :set nolist!<CR>
 
 " Map escape key to jj or <leader>e
 imap jj <ESC>

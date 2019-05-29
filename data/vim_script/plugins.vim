@@ -112,7 +112,8 @@
   vmap ; <Plug>NERDCommenterToggle
 
 " NERDTree
-  map <silent> <C-o> :NERDTreeToggle<CR>
+  "map <silent> <C-t> :NERDTreeToggle<CR>
+  map <Leader>t :NERDTreeToggle<CR>
   let g:NERDTreeBookmarksFile = expand($HOME.'/.vim/.NERDTreeBookmarks')
   let g:NERDTreeWinPos = "left"
   let g:NERDTreeShowBookmarks = 1
@@ -271,7 +272,8 @@
   nnoremap <Leader>a :Ack!<Space>
 
   " taglist
-  map <C-i> :TlistOpen<CR>
+  "map <C-m> :TlistOpen<CR>
+  map <Leader>l :TlistOpen<CR>
   let Tlist_Use_Right_Window = 1
   let Tlist_WinWidth = 50
   let Tlist_Close_On_Select = 1
