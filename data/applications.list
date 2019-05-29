@@ -1,6 +1,7 @@
 build-essential
 libncurses5-dev
 tmux
+tmuxp
 tree
 zsh
 autojump
