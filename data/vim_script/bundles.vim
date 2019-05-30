@@ -44,7 +44,7 @@ if count(g:bundle_groups, 'general')
   "Plugin 'mhinz/vim-startify'
   Plugin 'troydm/easybuffer.vim'
   "Plugin 'yonchu/accelerated-smooth-scroll'
-  Plugin 'pelodelfuego/vim-swoop'
+  "Plugin 'pelodelfuego/vim-swoop'
   "Plugin 'chrisbra/vim-diff-enhanced'
 endif
 " DEVELOPER
@@ -71,13 +71,16 @@ if count(g:bundle_groups, 'devel')
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'vim-syntastic/syntastic'
   "Plugin 'majutsush/tagbar'
-  Plugin 'vim-scripts/cscope.vim'
+  "Plugin 'vim-scripts/cscope.vim'
+  Plugin 'brookhong/cscope.vim'
   Plugin 'vim-scripts/taglist.vim'
   Plugin 'vim-scripts/a.vim'
   Plugin 'vim-scripts/vim-maximizer'
   Plugin 'tmux-plugins/vim-tmux'
   Plugin 'christoomey/vim-tmux-navigator'
-  "Plugin 'dracula/vim'
+  "Plugin 'vhdirk/vim-cmake'
+  "Plugin 'lgnotus/cmake-project.vim'
+  Plugin 'ilyachur/cmake4vim'
 endif
 " LANGUAGES
 if count(g:bundle_groups, 'languages')

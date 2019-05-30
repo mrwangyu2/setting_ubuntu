@@ -231,5 +231,5 @@ set encoding=utf-8
 
 " vim-maximizer
 "map <C-m> : MaximizerToggle<CR>
-map <C-m> <C-W>_<C-W><bar>
+map <C-w>z <C-W>_<C-W><bar>
 
