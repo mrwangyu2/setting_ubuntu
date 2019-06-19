@@ -274,7 +274,7 @@
   " taglist
   "map <C-m> :TlistOpen<CR>
   map <Leader>l :TlistOpen<CR>
-  let Tlist_Use_Right_Window = 1
+  "let Tlist_Use_Right_Window = 1
   let Tlist_WinWidth = 50
   let Tlist_Close_On_Select = 1
 

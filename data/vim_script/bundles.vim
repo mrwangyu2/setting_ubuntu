@@ -60,7 +60,8 @@ if count(g:bundle_groups, 'devel')
   "Plugin 'Shougo/neosnippet-snippets'
   Plugin 'osyo-manga/vim-over'
   Plugin 'mattn/emmet-vim'
-  Plugin 'Chiel92/vim-autoformat'
+  "Plugin 'Chiel92/vim-autoformat'
+  Plugin 'rhysd/vim-clang-format'
   Plugin 'jiangmiao/auto-pairs'
   Plugin 'scrooloose/nerdtree'
   Plugin 'Valloric/YouCompleteMe'
@@ -81,6 +82,7 @@ if count(g:bundle_groups, 'devel')
   "Plugin 'vhdirk/vim-cmake'
   "Plugin 'lgnotus/cmake-project.vim'
   Plugin 'ilyachur/cmake4vim'
+  Plugin 'brooth/far.vim'
 endif
 " LANGUAGES
 if count(g:bundle_groups, 'languages')
