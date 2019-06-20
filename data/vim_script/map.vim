@@ -10,7 +10,8 @@ map <C-z> <Nop>
 "}}}
 
 " Set mapleader
-let g:mapleader=","
+"let g:mapleader=","
+let g:mapleader="\<Space>"
 
 " Toggle paste mode
 nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>

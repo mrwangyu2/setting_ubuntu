@@ -83,6 +83,8 @@ if count(g:bundle_groups, 'devel')
   "Plugin 'lgnotus/cmake-project.vim'
   Plugin 'ilyachur/cmake4vim'
   Plugin 'brooth/far.vim'
+  Plugin 'liuchengxu/vim-which-key'
+
 endif
 " LANGUAGES
 if count(g:bundle_groups, 'languages')

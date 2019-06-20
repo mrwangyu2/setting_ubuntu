@@ -234,20 +234,3 @@ set encoding=utf-8
 "map <C-m> : MaximizerToggle<CR>
 map <C-w>z <C-W>_<C-W><bar>
 
-" set cursor
-"let &t_SI = "\e[5 q]"
-"let &t_EI = "\e[2 q]"
-
-"let &t_SI = "\<Esc>]12;purple\x7"
-	"let &t_SR = "\<Esc>]12;red\x7"
-	"let &t_EI = "\<Esc>]12;blue\x7"
-
-"let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-"let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-"let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-
-"let &t_ti.="\e[1 q"
-"let &t_SI.="\e[5 q"
-"let &t_EI.="\e[1 q"
-"let &t_te.="\e[0 q"
-

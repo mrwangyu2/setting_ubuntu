@@ -113,7 +113,7 @@
 
 " NERDTree
   "map <silent> <C-t> :NERDTreeToggle<CR>
-  map <Leader>t :NERDTreeToggle<CR>
+  map <Leader>e :NERDTreeToggle<CR>
   let g:NERDTreeBookmarksFile = expand($HOME.'/.vim/.NERDTreeBookmarks')
   let g:NERDTreeWinPos = "left"
   let g:NERDTreeShowBookmarks = 1
@@ -307,3 +307,7 @@
   " i: Find files #including this file =
   nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 
+
+  " which key
+  nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+  set timeoutlen=500
