@@ -30,6 +30,9 @@ imap jj <ESC>
 "" Fast saving
 nmap <leader>w :w!<cr>
 
+" switch between header file and cpp file
+nmap<leader>t :A<cr>
+
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
@@ -83,3 +86,4 @@ nmap <silent> <leader>ul :t.<CR>Vr-
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
+

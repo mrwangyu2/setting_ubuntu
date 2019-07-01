@@ -311,3 +311,12 @@
   " which key
   nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
   set timeoutlen=500
+
+  " ClangFormat
+  nnoremap <silent> <leader>o :ClangFormat <CR>
+
+  " Fay key
+ "let wordUnderCursor = expand('<cword>')
+ "nnoremap  <leader>F :Far wordUnderCursor
+ "map  <leader>F :Far &wordUnderCursor
+
