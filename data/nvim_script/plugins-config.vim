@@ -3,7 +3,7 @@
 " easymotion
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
-map m <Plug>(easymotion-bd-f)
+map e <Plug>(easymotion-bd-f)
 
 " NERDCommenter
 nmap ; <Plug>NERDCommenterToggle
@@ -42,29 +42,29 @@ set timeoutlen=500
 nnoremap <silent> <leader>fo :ClangFormat <CR>
 
 " ale - check grammar
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-  \   'csh': ['shell'],
-  \   'zsh': ['shell'],
-  \   'go': ['gofmt', 'golint'],
-  \   'python': ['flake8', 'mypy', 'pylint'],
-  \   'c': ['gcc', 'cppcheck'],
-  \   'cpp': ['clang', 'cppcheck'],
-  \   'text': [],
-  \}
-let g:ale_completion_delay = 500
-let g:ale_echo_delay = 20
-let g:ale_lint_delay = 500
-let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++11'
+"let g:ale_linters_explicit = 1
+"let g:ale_linters = {
+  "\   'csh': ['shell'],
+  "\   'zsh': ['shell'],
+  "\   'go': ['gofmt', 'golint'],
+  "\   'python': ['flake8', 'mypy', 'pylint'],
+  "\   'c': ['gcc', 'cppcheck'],
+  "\   'cpp': ['clang', 'cppcheck'],
+  "\   'text': [],
+  "\}
+"let g:ale_completion_delay = 500
+"let g:ale_echo_delay = 20
+"let g:ale_lint_delay = 500
+"let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+"let g:ale_lint_on_text_changed = 'normal'
+"let g:ale_lint_on_insert_leave = 1
+"let g:airline#extensions#ale#enabled = 1
+"let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+"let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++11'
 "let g:ale_cpp_clang_options = '-Wall -O2 -std=c++17 -stdlib=libc++ -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 -isystem /usr/include/c++/7'
-let g:ale_cpp_clang_options = ' -O2 -std=c++11 -isystem /usr/include/c++/7 -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 '
-let g:ale_cpp_cppcheck_options = ' -O2 -std=c++11 -isystem /usr/include/c++/7 -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 '
-let g:ale_c_cppcheck_options = '' 
+"let g:ale_cpp_clang_options = ' -O2 -std=c++11 -isystem /usr/include/c++/7 -I/home/frank/develop/c/ctp_api/6.3.15/include -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 '
+"let g:ale_cpp_cppcheck_options = ' -O2 -std=c++11 -isystem /usr/include/c++/7 -I/home/frank/develop/c/ctp_api/6.3.15/include -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 '
+"let g:ale_c_cppcheck_options = '' 
  
 " vim-cpp-enhanced-highlight
 "let c_no_curly_error = 1
@@ -76,9 +76,26 @@ let g:ale_c_cppcheck_options = ''
 "let g:cpp_concepts_highlight = 1
 "let g:cpp_no_function_highlight = 1 
 
+
+ "syntastic
+  "let g:syntastic_enable_balloons = 1
+  "let g:syntastic_auto_jump=0
+  "let g:syntastic_always_populate_loc_list=1
+  "let g:syntastic_auto_loc_list=1
+  "let g:syntastic_loc_list_height=5
+  "let g:syntastic_enable_signs=1
+  "let g:syntastic_error_symbol='✗'
+  "let g:syntastic_warning_symbol='⚠'
+  "let g:ycm_show_diagnostics_ui = 0
+
+"syntastic for clang
+  "let g:syntastic_cpp_compiler='clang++'
+  "let g:syntastic_cpp_compiler_options=' -std=c++17 -stdlib=libc++ -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7 '
+
+
 " highlight
-let c_no_curly_error = 1
-let g:cpp_simple_highlight = 1
+"let c_no_curly_error = 1
+"let g:cpp_simple_highlight = 1
 
 " fzf 
 "source $HOME/.config/nvim/plugin_script/fzf.vim
@@ -92,11 +109,12 @@ noremap <silent> <leader>m :AsyncRun cd build && make<CR>
 noremap <silent> <leader>mr :AsyncRun rm -rf build && mkdir build && cd build && cmake .. && make<CR>
 noremap <silent> <leader>rl :AsyncRun cd bin && ./unit_test --gtest_list_tests<CR>
 noremap <silent> <leader>rt :AsyncRun cd bin && ./unit_test --gtest_filter=test_ctp_
+noremap <silent> <leader>ro :AsyncStop<CR>
 
 " vim-over
   nnoremap <leader>s :OverCommandLine<CR>%s/<C-r><C-w>/
-" clangd server
 
+" clangd server
 "if executable('clangd')
     augroup lsp_clangd
         autocmd!
@@ -111,5 +129,29 @@ noremap <silent> <leader>rt :AsyncRun cd bin && ./unit_test --gtest_filter=test_
         autocmd FileType objcpp setlocal omnifunc=lsp#complete
     augroup end
 "endif
+
+noremap <silent> <leader>gd :LspDefinition<CR>
+noremap <silent> <leader>gn :LspNextReference<CR>
+noremap <silent> <leader>gp :LspPreviousReference<CR>
+noremap <silent> <leader>rn :LspRename<CR>
+
+
 " gen_tags
 let g:gen_tags#gtags_default_map = 1
+noremap <silent> <leader>gt :GenCtags<CR>
+
+" mru
+"let g:mru_file_list_size = 7
+"let g:mru_ignore_patterns = 'fugitive\|\.it/\|\_^/tmp/'
+
+" browse old file
+noremap <silent> <leader>h :browse oldfiles<CR>
+
+" far
+"let wordUnderCursor = expand('<cword>')
+nnoremap  <silent> <leader>aa :Far 
+
+" vim-workspace
+nnoremap <leader>ss :ToggleWorkspace<CR>
+let g:workspace_session_name = 'Session.vim'
+let g:workspace_session_directory = $HOME . '/.vim/session/'

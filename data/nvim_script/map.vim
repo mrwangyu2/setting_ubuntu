@@ -36,6 +36,18 @@ nmap<leader>t :A<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
+" Move visual block
+vnoremap <c-J> :m '>+1<CR>gv=gv
+vnoremap <c-K> :m '<-2<CR>gv=gv
+
+" jump to start/end of line
+noremap H ^
+noremap L $
+
+" Circular windows navigation
+nmap <C-j> <c-w>w
+nmap <C-k> <c-w>W
+
 " fzf
 "nnoremap <silent> <leader>ff :FZF<CR>
 

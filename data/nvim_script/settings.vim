@@ -152,18 +152,6 @@ let s:sessiondir  = expand("~/.vim/sessions", 1)
 let s:sessionfile = expand(s:sessiondir . "/session.vim", 1)
 let s:sessionlock = expand(s:sessiondir . "/session.lock", 1)
 
-" Switch between cpp and h
-function! OpenOther()
-  if expand("%:e") == "cpp"
-    exe "split" fnameescape(expand("%:p:r:s?src?include?").".h")
-  elseif expand("%:e") == "h"
-    exe "split" fnameescape(expand("%:p:r:s?include?src?").".cpp")
-  endif
-endfunction
-
-nmap ,o :call OpenOther()
-
-
 set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
 set termencoding=utf-8
 set encoding=utf-8
@@ -172,5 +160,5 @@ set encoding=utf-8
 map <C-w>z <C-W>_<C-W><bar>
 
 " color
-set t_Co=256
+"set t_Co=256
 

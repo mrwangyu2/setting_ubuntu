@@ -1,10 +1,12 @@
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/vim-plugins')
 
+"Plug 'octol/vim-cpp-enhance-highlight'
+"Plug 'w0rp/ale'
+"Plug 'vim-syntastic/syntastic'
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'gilligan/vim-lldb'
 Plug 'scrooloose/nerdtree'
 Plug 'liuchengxu/vim-which-key'
-Plug 'rhysd/vim-clang-format'
-"Plug 'octol/vim-cpp-enhance-highlight'
-Plug 'w0rp/ale'
 Plug 'vim-scripts/a.vim'
 Plug 'vim-scripts/vim-maximizer'
 Plug 'tmux-plugins/vim-tmux'
@@ -22,5 +24,13 @@ Plug 't9md/vim-choosewin'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Lokaltog/vim-easymotion'
+Plug 'jsfaint/gen_tags.vim'
+Plug 'kshenoy/vim-signature'
+Plug 'brooth/far.vim'
+Plug 'justmao945/vim-clang'
+Plug 'simeji/winresizer'
+Plug 'AndrewRadev/linediff.vim'
+Plug 'rhysd/vim-clang-format'
+Plug 'thaerkh/vim-workspace'
 
 call plug#end()
