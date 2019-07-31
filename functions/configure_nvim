@@ -10,7 +10,7 @@ function config_nvim_script(){
  NVIM_SCRIPT_PATH="./data/nvim_script"
 
  mkdir -p ~/.config/nvim
- cp -rf $NVIM_SCRIPT_PATH/* ~/.vim/.
+ cp -rf $NVIM_SCRIPT_PATH/* ~/.config/nvim/.
 }
 
 function configure_nvim(){
