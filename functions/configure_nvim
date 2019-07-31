@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function update_apps_for_nvim(){
+  superuser_do "apt install neovim"
+  superuser_do "apt install python-neovim"
+  superuser_do "apt install python3-neovim"
+}
+
+function config_nvim_script(){
+ NVIM_SCRIPT_PATH="./data/nvim_script"
+
+ mkdir -p ~/.config/nvim
+ cp -rf $NVIM_SCRIPT_PATH/* ~/.vim/.
+}
+
+function configure_nvim(){
+  echo_message title "Starting configure nvim..."
+  update_apps_for_nvim
+  config_nvim_script
+}
+
