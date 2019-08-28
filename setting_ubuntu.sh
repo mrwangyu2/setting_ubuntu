@@ -20,6 +20,7 @@ function execute_all_operations(){
   system_update
   install_apps
   configure_zsh
+  configure_rc_local
 }
 
 function main(){
