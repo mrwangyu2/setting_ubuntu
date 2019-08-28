@@ -16,10 +16,16 @@ function initialize_os(){
   fi
 }
 
+function execute_all_operations(){
+  system_update
+  install_apps
+  configure_zsh
+}
+
 function main(){
   echo_message header "Starting main function"
 
-  initialize_os 
+  initialize_os
 
   MAIN=$(eval 'whiptail \
 	 --notags \
@@ -32,6 +38,7 @@ function main(){
          "install_clang"      "Install clang" \
          "download_tar_packages" "Download preferred tar packages" \
          "system_configure"  "Configure system evironment" \
+         "execute_all_operations"  "Excute all operations" \
          3>&1 1>&2 2>&3')
 
   if [[ $? = 0 ]]; then
