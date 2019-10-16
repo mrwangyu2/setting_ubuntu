@@ -6,8 +6,8 @@ hi link EasyMotionShade  Comment
 map e <Plug>(easymotion-bd-f)
 
 " NERDCommenter
-nmap ; <Plug>NERDCommenterToggle
-vmap ; <Plug>NERDCommenterToggle
+"nmap ; <Plug>NERDCommenterToggle
+"vmap ; <Plug>NERDCommenterToggle
 
 " NERDTree
 "map <silent> <C-t> :NERDTreeToggle<CR>
@@ -29,7 +29,7 @@ let g:NERDTreeQuitOnOpen = 1
 
 " ack
 let g:ackprg = 'ag --nogroup --nocolor --colum'
-nnoremap <Leader>a :Ack!<Space>
+nnoremap <Leader>fa :Ack!<Space>
 
 " quit vim
 map <Leader>q :wqa!<CR>
@@ -130,15 +130,23 @@ noremap <silent> <leader>ro :AsyncStop<CR>
     augroup end
 "endif
 
-noremap <silent> <leader>gd :LspDefinition<CR>
-noremap <silent> <leader>gn :LspNextReference<CR>
-noremap <silent> <leader>gp :LspPreviousReference<CR>
-noremap <silent> <leader>rn :LspRename<CR>
+" vim_lsp
+noremap <silent> <leader>ld :LspDefinition<CR>
+noremap <silent> <leader>ln :LspNextReference<CR>
+noremap <silent> <leader>lp :LspPreviousReference<CR>
+noremap <silent> <leader>ln :LspRename<CR>
 
 
 " gen_tags
 let g:gen_tags#gtags_default_map = 1
-noremap <silent> <leader>gt :GenCtags<CR>
+noremap <silent> <leader>ct :GenCtags<CR>
+noremap <silent> <leader>cs :GenGTAGS<CR>
+noremap <silent> <leader>cct :ClearCtags<CR>
+noremap <silent> <leader>ccs :ClearGTAGS<CR>
+
+noremap <silent> <leader>gs :cscope find s <C-r><C-w><CR>
+noremap <silent> <leader>gc :cscope find c <C-r><C-w><CR>
+noremap <silent> <leader>gf :cscope find f <C-r><C-w><CR>
 
 " mru
 "let g:mru_file_list_size = 7
@@ -148,10 +156,12 @@ noremap <silent> <leader>gt :GenCtags<CR>
 noremap <silent> <leader>h :browse oldfiles<CR>
 
 " far
-"let wordUnderCursor = expand('<cword>')
-nnoremap  <silent> <leader>aa :Far 
+nnoremap  <silent> <leader>fs :Far <C-r><C-w> **/*.[ch]*
+nnoremap  <silent> <leader>fd :Far <C-r><C-w> **/*.[ch]*
 
 " vim-workspace
-nnoremap <leader>ss :ToggleWorkspace<CR>
+nnoremap <leader>ws :ToggleWorkspace<CR>
 let g:workspace_session_name = 'Session.vim'
 let g:workspace_session_directory = $HOME . '/.vim/session/'
+
+" quickr-cscope.vim
