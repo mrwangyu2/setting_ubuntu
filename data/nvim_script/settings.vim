@@ -159,6 +159,15 @@ set encoding=utf-8
 " vim-maximizer
 map <C-w>z <C-W>_<C-W><bar>
 
-" color
-"set t_Co=256
+" color scheme
+set t_Co=256
+syntax on
+"set termguicolors
+colorscheme onedark
 
+" set color of popup windows
+"highlight Pmenu ctermfg =black ctermbg=gray
+highlight Pmenu ctermfg =black ctermbg=8
+
+"highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
+"highlight Lf_hl_matchRefine gui=bold guifg=Magenta cterm=bold ctermfg=201

@@ -1,16 +1,17 @@
 " PLUGINS CONFIG
-
 " easymotion
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
 map e <Plug>(easymotion-bd-f)
 
-" NERDCommenter
-"nmap ; <Plug>NERDCommenterToggle
-"vmap ; <Plug>NERDCommenterToggle
+" Commenter
+nmap <silent> ; :call CommentLine()<CR>  
+vmap <silent> ; :call CommentLine()<CR>  
+
+nmap <silent> ' :call UnCommentLine()<CR>  
+vmap <silent> ' :call UnCommentLine()<CR>  
 
 " NERDTree
-"map <silent> <C-t> :NERDTreeToggle<CR>
 map <Leader>e :NERDTreeToggle<CR>
 let g:NERDTreeBookmarksFile = expand($HOME.'/.vim/.NERDTreeBookmarks')
 let g:NERDTreeWinPos = "left"
@@ -41,73 +42,15 @@ set timeoutlen=500
 " ClangFormat
 nnoremap <silent> <leader>fo :ClangFormat <CR>
 
-" ale - check grammar
-"let g:ale_linters_explicit = 1
-"let g:ale_linters = {
-  "\   'csh': ['shell'],
-  "\   'zsh': ['shell'],
-  "\   'go': ['gofmt', 'golint'],
-  "\   'python': ['flake8', 'mypy', 'pylint'],
-  "\   'c': ['gcc', 'cppcheck'],
-  "\   'cpp': ['clang', 'cppcheck'],
-  "\   'text': [],
-  "\}
-"let g:ale_completion_delay = 500
-"let g:ale_echo_delay = 20
-"let g:ale_lint_delay = 500
-"let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-"let g:ale_lint_on_text_changed = 'normal'
-"let g:ale_lint_on_insert_leave = 1
-"let g:airline#extensions#ale#enabled = 1
-"let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-"let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++11'
-"let g:ale_cpp_clang_options = '-Wall -O2 -std=c++17 -stdlib=libc++ -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 -isystem /usr/include/c++/7'
-"let g:ale_cpp_clang_options = ' -O2 -std=c++11 -isystem /usr/include/c++/7 -I/home/frank/develop/c/ctp_api/6.3.15/include -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 '
-"let g:ale_cpp_cppcheck_options = ' -O2 -std=c++11 -isystem /usr/include/c++/7 -I/home/frank/develop/c/ctp_api/6.3.15/include -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 '
-"let g:ale_c_cppcheck_options = '' 
- 
-" vim-cpp-enhanced-highlight
-"let c_no_curly_error = 1
-"let g:cpp_class_scope_highlight = 1
-"let g:cpp_member_variable_highlight = 1
-"let g:cpp_class_decl_highlight = 1
-"let g:cpp_experimental_simple_template_highlight = 1
-"let g:cpp_experimental_template_highlight = 1
-"let g:cpp_concepts_highlight = 1
-"let g:cpp_no_function_highlight = 1 
-
-
- "syntastic
-  "let g:syntastic_enable_balloons = 1
-  "let g:syntastic_auto_jump=0
-  "let g:syntastic_always_populate_loc_list=1
-  "let g:syntastic_auto_loc_list=1
-  "let g:syntastic_loc_list_height=5
-  "let g:syntastic_enable_signs=1
-  "let g:syntastic_error_symbol='✗'
-  "let g:syntastic_warning_symbol='⚠'
-  "let g:ycm_show_diagnostics_ui = 0
-
-"syntastic for clang
-  "let g:syntastic_cpp_compiler='clang++'
-  "let g:syntastic_cpp_compiler_options=' -std=c++17 -stdlib=libc++ -I/usr/include/clang/6.0.1/include -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7 '
-
-
-" highlight
-"let c_no_curly_error = 1
-"let g:cpp_simple_highlight = 1
-
-" fzf 
-"source $HOME/.config/nvim/plugin_script/fzf.vim
-
 " LeaderF
 noremap <silent> <leader>o :LeaderfFunction<CR>
+
 
 " Asyncrun
 let g:asyncrun_open = 80
 noremap <silent> <leader>m :AsyncRun cd build && make<CR>
 noremap <silent> <leader>mr :AsyncRun rm -rf build && mkdir build && cd build && cmake .. && make<CR>
-noremap <silent> <leader>rl :AsyncRun cd bin && ./unit_test --gtest_list_tests<CR>
+noremap <silent> <leader>lt :AsyncRun cd bin && ./unit_test --gtest_list_tests<CR>
 noremap <silent> <leader>rt :AsyncRun cd bin && ./unit_test --gtest_filter=test_ctp_
 noremap <silent> <leader>ro :AsyncStop<CR>
 
@@ -131,10 +74,15 @@ noremap <silent> <leader>ro :AsyncStop<CR>
 "endif
 
 " vim_lsp
-noremap <silent> <leader>ld :LspDefinition<CR>
-noremap <silent> <leader>ln :LspNextReference<CR>
-noremap <silent> <leader>lp :LspPreviousReference<CR>
-noremap <silent> <leader>ln :LspRename<CR>
+noremap <silent> <leader>gd :LspDefinition<CR>
+noremap <silent> <leader>pd gd :LspPeekDefinition<CR>
+noremap <silent> <leader>gi <C-]>
+noremap <silent> <leader>gn :LspNextReference<CR>
+noremap <silent> <leader>gp :LspPreviousReference<CR>
+noremap <silent> <leader>rn :LspRename<CR>
+
+" clear gd
+noremap <silent> <leader>nh :noh<CR>
 
 
 " gen_tags
@@ -148,20 +96,24 @@ noremap <silent> <leader>gs :cscope find s <C-r><C-w><CR>
 noremap <silent> <leader>gc :cscope find c <C-r><C-w><CR>
 noremap <silent> <leader>gf :cscope find f <C-r><C-w><CR>
 
-" mru
-"let g:mru_file_list_size = 7
-"let g:mru_ignore_patterns = 'fugitive\|\.it/\|\_^/tmp/'
-
 " browse old file
 noremap <silent> <leader>h :browse oldfiles<CR>
 
 " far
 nnoremap  <silent> <leader>fs :Far <C-r><C-w> **/*.[ch]*
-nnoremap  <silent> <leader>fd :Far <C-r><C-w> **/*.[ch]*
+nnoremap  <silent> <leader>fd :Fardo <C-r><C-w>
 
 " vim-workspace
 nnoremap <leader>ws :ToggleWorkspace<CR>
 let g:workspace_session_name = 'Session.vim'
 let g:workspace_session_directory = $HOME . '/.vim/session/'
 
-" quickr-cscope.vim
+" onedark
+"let g:onedark_termcolors=256
+
+" lightline
+let g:lightline = {'colorscheme':'onedark'}
+
+" gencode
+noremap <silent> <leader>ad :GenDeclaration<CR>
+noremap <silent> <leader>ai :GenDefinition<CR>

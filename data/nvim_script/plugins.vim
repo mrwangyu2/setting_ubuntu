@@ -32,5 +32,8 @@ Plug 'simeji/winresizer'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'thaerkh/vim-workspace'
+Plug 'joshdick/onedark.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'tenfyzhong/vim-gencode-cpp'
 
 call plug#end()
