@@ -6,6 +6,7 @@ call plug#begin('~/.config/vim-plugins')
 "Plug 'prabirshrestha/asyncomplete.vim'
 "Plug 'gilligan/vim-lldb'
 "Plug 'scrooloose/nerdcommenter'
+"Plug 'prompt-toolkit/pyvim'
 Plug 'scrooloose/nerdtree'
 Plug 'liuchengxu/vim-which-key'
 Plug 'vim-scripts/a.vim'
@@ -35,5 +36,8 @@ Plug 'thaerkh/vim-workspace'
 Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tenfyzhong/vim-gencode-cpp'
-
+Plug 'nvie/vim-flake8'
+Plug 'python-mode/python-mode', {'for': 'python', 'branch': 'develop'}
+Plug 'vim-scripts/comments.vim'
+" for python
 call plug#end()

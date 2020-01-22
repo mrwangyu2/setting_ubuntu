@@ -5,11 +5,11 @@ hi link EasyMotionShade  Comment
 map e <Plug>(easymotion-bd-f)
 
 " Commenter
-nmap <silent> ; :call CommentLine()<CR>  
-vmap <silent> ; :call CommentLine()<CR>  
+"nmap <silent> ; :call CommentLine()<CR>  
+"vmap <silent> ; :call CommentLine()<CR>  
 
-nmap <silent> ' :call UnCommentLine()<CR>  
-vmap <silent> ' :call UnCommentLine()<CR>  
+"nmap <silent> ' :call UnCommentLine()<CR>  
+"vmap <silent> ' :call UnCommentLine()<CR>  
 
 " NERDTree
 map <Leader>e :NERDTreeToggle<CR>
@@ -44,6 +44,7 @@ nnoremap <silent> <leader>fo :ClangFormat <CR>
 
 " LeaderF
 noremap <silent> <leader>o :LeaderfFunction<CR>
+noremap <silent> <leader>bb :LeaderfBuffer<CR>
 
 
 " Asyncrun
