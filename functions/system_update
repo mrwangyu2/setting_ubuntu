@@ -3,5 +3,11 @@ function system_update(){
   echo_message header "Starting system_update function"
   superuser_do cp ./data/sources.list.ubuntu18.04 /etc/apt/sources.list
   superuser_do apt update
+  setting_pip_sources
+}
 
+function setting_pip_sources(){
+  echo_message header "Setting pip sources"
+  mkidr -p ~/.config
+  cp -rf ./data/sources_pip ~/.config/pip
 }
