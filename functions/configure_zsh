@@ -9,6 +9,7 @@ function configure_zsh(){
   fi
   setting_zsh
   change_shell_to_zsh
+  change_oh-my-zsh_permission
 }
 
 function check_zsh_for_oh-my(){
@@ -96,6 +97,10 @@ function setting_zsh_plugins(){
     echo_message error "Error: .zshrc isn't existion."
     pause_process
   fi
+}
+
+function change_oh-my-zsh_permission(){
+  superuser_do chown -R frank:frank ~/.oh-my-zsh 
 }
 
 

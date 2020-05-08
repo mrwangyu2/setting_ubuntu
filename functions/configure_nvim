@@ -4,6 +4,7 @@ function update_apps_for_nvim(){
   superuser_do "apt install neovim"
   superuser_do "apt install python-neovim"
   superuser_do "apt install python3-neovim"
+  change_nvim_permission
 }
 
 function config_nvim_script(){
@@ -25,5 +26,9 @@ function configure_nvim(){
   update_apps_for_nvim
   config_nvim_script
   install_python3_to_nvim
+}
+
+function change_nvim_permission(){
+  superuser_do chown -R frank:frank ~/.vim
 }
 
