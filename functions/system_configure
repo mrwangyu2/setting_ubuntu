@@ -10,6 +10,7 @@ function system_configure(){
             --cancel-button "Go Back" \
             $LINES $COLUMNS $(( $LINES - 12 )) \
             'configure_zsh'   'Configure zsh' \
+            'configure_tmux'   'Configure tmux' \
             'configure_vim'   'Configure vim' \
             'configure_nvim'   'Configure nvim' \
             'configure_rc_local'   'Setting rc.local' \
