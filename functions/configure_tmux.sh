@@ -8,6 +8,7 @@ function configure_tmux(){
 function install_plugins(){
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   cp ./data/tmux_script/tmux.conf ~/.tmux.conf
+  tmux
   tmux source ~/.tmux.conf
   cp ./data/tmux_script/default.sh ~/.tmux/plugins/tmux-powerline/themes/.
 } 
