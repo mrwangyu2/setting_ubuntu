@@ -19,7 +19,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'mileszs/ack.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+"Plug 'prabirshrestha/vim-lsp'
 Plug 'ajh17/vimcompletesme'
 Plug 'jsfaint/gen_tags.vim'
 Plug 't9md/vim-choosewin'
@@ -39,5 +39,8 @@ Plug 'tenfyzhong/vim-gencode-cpp'
 Plug 'nvie/vim-flake8'
 Plug 'python-mode/python-mode', {'for': 'python', 'branch': 'develop'}
 Plug 'vim-scripts/comments.vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'Shougo/deoplete.nvim', {'do': ':autocmd VimEnter * UpdateRemotePlugins'}
 " for python
 call plug#end()
