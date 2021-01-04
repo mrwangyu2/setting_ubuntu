@@ -167,7 +167,8 @@ colorscheme onedark
 
 " set color of popup windows
 "highlight Pmenu ctermfg =black ctermbg=gray
-highlight Pmenu ctermfg =black ctermbg=8
+"highlight Pmenu ctermfg =black ctermbg=8
+highlight Pmenu ctermfg =black ctermbg=gray guibg=gray
 
 "highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
 "highlight Lf_hl_matchRefine gui=bold guifg=Magenta cterm=bold ctermfg=201
