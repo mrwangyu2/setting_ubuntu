@@ -45,6 +45,7 @@ nnoremap <silent> <leader>fo :ClangFormat <CR>
 " LeaderF
 noremap <silent> <leader>o :LeaderfFunction<CR>
 noremap <silent> <leader>bb :LeaderfBuffer<CR>
+let g:Lf_ShowDevIcons = 0
 
 
 " Asyncrun
@@ -60,27 +61,27 @@ noremap <silent> <leader>ro :AsyncStop<CR>
 
 " clangd server
 "if executable('clangd')
-    augroup lsp_clangd
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'clangd',
-                    \ 'cmd': {server_info->['clangd']},
-                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-                    \ })
-        autocmd FileType c setlocal omnifunc=lsp#complete
-        autocmd FileType cpp setlocal omnifunc=lsp#complete
-        autocmd FileType objc setlocal omnifunc=lsp#complete
-        autocmd FileType objcpp setlocal omnifunc=lsp#complete
-    augroup end
+    "augroup lsp_clangd
+        "autocmd!
+        "autocmd User lsp_setup call lsp#register_server({
+                    "\ 'name': 'clangd',
+                    "\ 'cmd': {server_info->['clangd']},
+                    "\ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+                    "\ })
+        "autocmd FileType c setlocal omnifunc=lsp#complete
+        "autocmd FileType cpp setlocal omnifunc=lsp#complete
+        "autocmd FileType objc setlocal omnifunc=lsp#complete
+        "autocmd FileType objcpp setlocal omnifunc=lsp#complete
+    "augroup end
 "endif
 
 " vim_lsp
-noremap <silent> <leader>gd :LspDefinition<CR>
-noremap <silent> <leader>pd gd :LspPeekDefinition<CR>
-noremap <silent> <leader>gi <C-]>
-noremap <silent> <leader>gn :LspNextReference<CR>
-noremap <silent> <leader>gp :LspPreviousReference<CR>
-noremap <silent> <leader>rn :LspRename<CR>
+"noremap <silent> <leader>gd :LspDefinition<CR>
+"noremap <silent> <leader>pd gd :LspPeekDefinition<CR>
+"noremap <silent> <leader>gi <C-]>
+"noremap <silent> <leader>gn :LspNextReference<CR>
+"noremap <silent> <leader>gp :LspPreviousReference<CR>
+"noremap <silent> <leader>rn :LspRename<CR>
 
 " clear gd
 noremap <silent> <leader>nh :noh<CR>
@@ -118,3 +119,18 @@ let g:lightline = {'colorscheme':'onedark'}
 " gencode
 noremap <silent> <leader>ad :GenDeclaration<CR>
 noremap <silent> <leader>ai :GenDefinition<CR>
+
+" deoplete and jedi
+"let g:deoplete#enable_at_startup=1
+"let g:deoplete#auto_complete=1
+autocmd FileType python call deoplete#enable()
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+"let g:jedi#popup_select_first = 1
+let g:jedi#show_call_signatures = "1"
+
+" Ultisnips
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/ultisnips']
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"

@@ -19,6 +19,10 @@ function config_nvim_script(){
 function install_python3_to_nvim(){
   pip2 install --user neovim
   pip3 install --user neovim
+  pip3 install --user pynvim
+  pip3 install --user jedi
+  pip3 install --user black
+  pip3 install --user isort
 }
 
 function configure_nvim(){

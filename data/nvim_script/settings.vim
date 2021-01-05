@@ -176,7 +176,4 @@ highlight Pmenu ctermfg=black ctermbg=gray guibg=gray
 "set python
 "set pyxversion=3
 "g:python3_host_prog="/usr/bin/python3"
-let g:deoplete#enable_at_startup=1
-let g:deoplete#auto_complete=1
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_on_dot = 0
+
