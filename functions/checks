@@ -8,12 +8,12 @@ function check_os(){
   echo_message header "Starting check_os function"
   echo_message title "Checking which OS you are using..."
   OS_NAME="Linux"
-  echo_message info "Current OS is: "$(uname)
+  #echo_message info "Current OS is: "$(uname)
   if [[ $(uname) != $OS_NAME ]]; then
     echo_message error "Your OS is not Linux, Aborting... :("
     exit 99
-  else
-    echo_message success "You are using ${OS_NAME} :D"
+  #else
+  #  echo_message success "You are using ${OS_NAME} :D"
   fi
 
 } 
@@ -43,9 +43,21 @@ function check_distribution(){
 function which_os(){
   echo_message header "Starting which_os function"
   
-  is_valid_os "Ubuntu" 
+  is_valid_os "Ubuntu 16.04" 
   if [[ $? = 0 ]]; then
-    export OS="Ubuntu"
+    export OS="Ubuntu 16.04 LTS"
+    return 0
+  fi
+
+  is_valid_os "Ubuntu 18.04" 
+  if [[ $? = 0 ]]; then
+    export OS="Ubuntu 18.04 LTS"
+    return 0
+  fi
+  
+  is_valid_os "Ubuntu 20.04" 
+  if [[ $? = 0 ]]; then
+    export OS="Ubuntu 20.04 LTS"
     return 0
   fi
 
@@ -113,11 +125,11 @@ function check_dependencies(){
         echo_message error 'Sorry, try again.' && check_dependencies
        ;;
       esac     
-    else
-      echo_message info "Dendencies $PACKAGE is installed."
+    #else
+      # echo_message info "Dendencies $PACKAGE is installed."
     fi
   done
-     echo_message info "All denpencies are installed. :)"
+     echo_message success "All denpencies are installed. :)"
 
 }
 

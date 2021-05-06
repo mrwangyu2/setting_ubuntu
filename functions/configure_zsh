@@ -18,17 +18,18 @@ function check_zsh_for_oh-my(){
    pause_process
    return 1;
   else
-    if [[ -d ~/.oh-my-zsh  ]]; then
-      echo_message error "oh-my-zsh is existion"
-      pause_process
-      return 1;
-    else
+  #  if [[ -d ~/.oh-my-zsh  ]]; then
+  #    echo_message error "oh-my-zsh is existion"
+  #    pause_process
+  #    return 1;
+  #  else
       if [[ $SHELL = '/usr/bin/zsh' ]]; then
+   	echo_message error "/usr/bin/zsh isn't installed, after insall it and try again."
         pause_process
         return 1;
       fi
       return 0;
-    fi
+  #  fi
   fi
 }
 
@@ -38,7 +39,9 @@ function change_shell_to_zsh(){
 
 function install_oh-my-zsh(){
   echo_message header "Starting install_oh-my-zsh function"
-  sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+  echo_message info "You will install oh-my-zsh. After installed, please exit zsh to continue setting zsh :)"
+  #sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+  sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
   if [[ $? = 0 ]]; then
     echo_message success "oh-my-zsh installed. :)"
@@ -50,7 +53,7 @@ function install_oh-my-zsh(){
   pause_process
 }
 
-function setting_zsh(){
+function setting_zsh_old(){
     git_clone_zsh_plugins
     get_all_zsh_plugins
     if (eval `resize` && whiptail \
@@ -62,6 +65,13 @@ function setting_zsh(){
      else
        echo_message info "Cancelled setting zsh plugins."
      fi
+}
+
+function setting_zsh(){
+    git_clone_zsh_plugins
+    get_all_zsh_plugins
+    install_fzf
+    setting_zsh_plugins
 }
 
 function git_clone_zsh_plugins(){
@@ -88,10 +98,12 @@ function setting_zsh_plugins(){
   if [[ -f ~/.zshrc ]]; then
     echo_message title "Setting zsh plugins."
     line=$(sed -n '/^plugins=(/=' ~/.zshrc)
-    line=$(( line + 1))
+    #line=$(( line + 1))
     echo_message info "line: ${line}"
-    sed -i "${line}s/.*/${ALL_PLUGINS}/g" ~/.zshrc
+    #sed -i "${line}s/.*/${ALL_PLUGINS}/g" ~/.zshrc
+    sed -i "${line}s/.*/plugins=(${ALL_PLUGINS})/g" ~/.zshrc
 
+    echo "source ~/.oh-my-zsh/custom/plugins/fzf-tab/fzf-tab.plugin.zsh" >> ~/.zshrc
     pause_process
   else
     echo_message error "Error: .zshrc isn't existion."
@@ -101,6 +113,13 @@ function setting_zsh_plugins(){
 
 function change_oh-my-zsh_permission(){
   superuser_do chown -R frank:frank ~/.oh-my-zsh 
+}
+
+function install_fzf(){
+  superuser_do chown -R frank:frank ~/.fzf 
+  if [[ ! -f ~/.fzf/bin/fzf ]]; then
+    ~/.fzf/install
+  fi
 }
 
 

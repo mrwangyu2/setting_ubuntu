@@ -5,11 +5,13 @@ function echo_message(){
 
   if ! [[ $color =~ '^[0-9]' ]]; then
     case $(echo -e $color | tr '[:upper:]' '[:lower:]') in
-      header) color=0 ;;
+#      header) color=0 ;;
+      header) return ;;
       error) color=1 ;;
       success) color=2 ;;
       welcome) color=3 ;;
-      title) color=4 ;;
+#      title) color=4 ;;
+      title) return ;;
       info) color=5 ;;
       question) color=6 ;;
       warning) color=202 ;;
@@ -20,18 +22,20 @@ function echo_message(){
   tput bold
   tput setaf $color
   echo '-- '$message
+  #echo $message
   tput sgr0
 }
 
 function test_echo_message(){
-echo_message header aaaaa
-echo_message error aaaaa
-echo_message success aaaaa
-echo_message welcome aaaaa
-echo_message title aaaaa
-echo_message info aaaaa
-echo_message question aaaaa
-echo_message warning aaaaa
+echo_message header "header"
+echo_message error "error"
+echo_message success "success"
+echo_message welcome "welcome"
+echo_message title "title"
+echo_message info "info"
+echo_message question "question"
+echo_message warning "warning"
 }
 
+#test_echo_message
 
