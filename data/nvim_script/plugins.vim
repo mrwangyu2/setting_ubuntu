@@ -46,5 +46,6 @@ Plug 'SirVer/ultisnips'
 Plug 'vim-scripts/AutoComplPop'
 Plug 'vim-scripts/OmniCppComplete'
 Plug 'psf/black'
+Plug 'wesleyche/SrcExpl'
 " for python
 call plug#end()

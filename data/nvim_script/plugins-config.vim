@@ -134,3 +134,16 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/ultisnips']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" SrcExpl
+nnoremap <leader>se :SrcExplToggle<CR>
+nnoremap <leader>so :SrcExplClose<CR>
+let g:SrcExpl_jumpKey="<ENTER>"
+let g:SrcExpl_gobackKey = "<C-o>"
+let g:SrcExpl_colorSchemeList = [
+        \ "Red",
+        \ "Cyan",
+        \ "Green",
+        \ "Yellow",
+        \ "Magenta"
+    \ ]
