@@ -139,7 +139,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 nnoremap <leader>se :SrcExplToggle<CR>
 nnoremap <leader>so :SrcExplClose<CR>
 let g:SrcExpl_jumpKey="<ENTER>"
-let g:SrcExpl_gobackKey = "<C-o>"
+let g:SrcExpl_gobackKey = "<leader>sb"
 let g:SrcExpl_colorSchemeList = [
         \ "Red",
         \ "Cyan",
