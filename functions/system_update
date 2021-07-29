@@ -1,7 +1,15 @@
 #!/bin/bash
 function system_update(){
   echo_message header "Starting system_update function"
-  superuser_do cp ./data/sources.list.ubuntu18.04 /etc/apt/sources.list
+  which_os
+  ret=$?
+  Source_File=""
+  if [[ $ret = 18 ]]; then
+    Source_File="sources.list.ubuntu18.04"
+  elif [[ $ret = 20 ]]; then
+    Source_File="sources.list.ubuntu20.04"
+  fi
+  superuser_do cp ./data/${Source_File} /etc/apt/sources.list
   superuser_do apt update
   setting_pip_sources
   setting_github_dns

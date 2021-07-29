@@ -46,19 +46,19 @@ function which_os(){
   is_valid_os "Ubuntu 16.04" 
   if [[ $? = 0 ]]; then
     export OS="Ubuntu 16.04 LTS"
-    return 0
+    return 16
   fi
 
   is_valid_os "Ubuntu 18.04" 
   if [[ $? = 0 ]]; then
     export OS="Ubuntu 18.04 LTS"
-    return 0
+    return 18
   fi
   
   is_valid_os "Ubuntu 20.04" 
   if [[ $? = 0 ]]; then
     export OS="Ubuntu 20.04 LTS"
-    return 0
+    return 20
   fi
 
   is_valid_os "Raspbian"
