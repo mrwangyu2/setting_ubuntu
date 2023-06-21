@@ -46,6 +46,8 @@ nnoremap <silent> <leader>fo :ClangFormat <CR>
 noremap <silent> <leader>o :LeaderfFunction<CR>
 noremap <silent> <leader>bb :LeaderfBuffer<CR>
 let g:Lf_ShowDevIcons = 0
+let g:Lf_WindowPosition = "popup"
+" let g:Lf_StlColorscheme = "one"
 
 
 " Asyncrun
@@ -88,15 +90,15 @@ noremap <silent> <leader>nh :noh<CR>
 
 
 " gen_tags
-let g:gen_tags#gtags_default_map = 1
-noremap <silent> <leader>ct :GenCtags<CR>
-noremap <silent> <leader>cs :GenGTAGS<CR>
-noremap <silent> <leader>cct :ClearCtags<CR>
-noremap <silent> <leader>ccs :ClearGTAGS<CR>
-
-noremap <silent> <leader>gs :cscope find s <C-r><C-w><CR>
-noremap <silent> <leader>gc :cscope find c <C-r><C-w><CR>
-noremap <silent> <leader>gf :cscope find f <C-r><C-w><CR>
+"let g:gen_tags#gtags_default_map = 1
+"noremap <silent> <leader>ct :GenCtags<CR>
+"noremap <silent> <leader>cs :GenGTAGS<CR>
+"noremap <silent> <leader>cct :ClearCtags<CR>
+"noremap <silent> <leader>ccs :ClearGTAGS<CR>
+"
+"noremap <silent> <leader>gs :cscope find s <C-r><C-w><CR>
+"noremap <silent> <leader>gc :cscope find c <C-r><C-w><CR>
+"noremap <silent> <leader>gf :cscope find f <C-r><C-w><CR>
 
 " browse old file
 noremap <silent> <leader>h :browse oldfiles<CR>
@@ -123,27 +125,102 @@ noremap <silent> <leader>ai :GenDefinition<CR>
 " deoplete and jedi
 "let g:deoplete#enable_at_startup=1
 "let g:deoplete#auto_complete=1
-autocmd FileType python call deoplete#enable()
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_on_dot = 0
-"let g:jedi#popup_select_first = 1
-let g:jedi#show_call_signatures = "1"
-
+"autocmd FileType python call deoplete#enable()
+"let g:jedi#auto_vim_configuration = 0
+"let g:jedi#popup_on_dot = 0
+""let g:jedi#popup_select_first = 1
+"let g:jedi#show_call_signatures = "1"
+"
 " Ultisnips
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/ultisnips']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-" SrcExpl
-nnoremap <leader>se :SrcExplToggle<CR>
-nnoremap <leader>so :SrcExplClose<CR>
-let g:SrcExpl_jumpKey="<ENTER>"
-let g:SrcExpl_gobackKey = "<leader>sb"
-let g:SrcExpl_colorSchemeList = [
-        \ "Red",
-        \ "Cyan",
-        \ "Green",
-        \ "Yellow",
-        \ "Magenta"
-    \ ]
+"" SrcExpl
+"nnoremap <leader>se :SrcExplToggle<CR>
+"nnoremap <leader>so :SrcExplClose<CR>
+"let g:SrcExpl_jumpKey="<ENTER>"
+"let g:SrcExpl_gobackKey = "<leader>sb"
+"let g:SrcExpl_colorSchemeList = [
+"        \ "Red",
+"        \ "Cyan",
+"        \ "Green",
+"        \ "Yellow",
+"        \ "Magenta"
+"    \ ]
+
+" Codi
+noremap <silent> <leader>i :Codi<CR>
+noremap <silent> <leader>ic :Codi!<CR>
+highlight CodiVirtualText guifg=Cyan
+let g:codi#virtual_text = 0
+let g:codi#width = 60
+let g:codi#rightalign = 0
+"let g:codi#virtual_text_prefix = "> "
+let g:codi#interpreters = {
+      \ 'python': {
+        \ 'bin': 'python3',
+        \ 'prompt': '^\(>>>\|\.\.\.\) ',
+        \ },
+      \ }
+
+
+" coc-snippets
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-n> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-n>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-p>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-s> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>cf  <Plug>(coc-format-selected)
+nmap <leader>cf  <Plug>(coc-format-selected
+
+let g:coc_disable_startup_warning = 1
+
+" tagbar
+map <Leader>t :TagbarToggle fjc<CR>
+
+" PreviewTag
+noremap <silent> <leader>p :PreviewTag<CR>
+noremap <silent> <leader>po :PreviewClose<CR>
+
+" floaterm 
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F10>'

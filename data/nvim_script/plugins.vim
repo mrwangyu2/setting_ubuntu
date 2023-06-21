@@ -13,15 +13,19 @@ Plug 'vim-scripts/a.vim'
 Plug 'vim-scripts/vim-maximizer'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh'}
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension'}
 Plug 'vim-scripts/comments.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'mileszs/ack.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'prabirshrestha/async.vim'
-"Plug 'prabirshrestha/vim-lsp'
+""Plug 'prabirshrestha/vim-lsp'
 "Plug 'ajh17/vimcompletesme'
-Plug 'jsfaint/gen_tags.vim'
+"Plug 'jsfaint/gen_tags.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/vim-preview'
+"Plug 'voldikss/vim-skylight'
+"Plug 'greyblake/vim-preview'
 Plug 't9md/vim-choosewin'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'jiangmiao/auto-pairs'
@@ -39,13 +43,21 @@ Plug 'tenfyzhong/vim-gencode-cpp'
 Plug 'nvie/vim-flake8'
 Plug 'python-mode/python-mode', {'for': 'python', 'branch': 'develop'}
 Plug 'vim-scripts/comments.vim'
-Plug 'davidhalter/jedi-vim'
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'Shougo/deoplete.nvim', {'do': ':autocmd VimEnter * UpdateRemotePlugins'}
-Plug 'SirVer/ultisnips'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'deoplete-plugins/deoplete-jedi'
+"Plug 'Shougo/deoplete.nvim', {'do': ':autocmd VimEnter * UpdateRemotePlugins'}
+"Plug 'SirVer/ultisnips'
 Plug 'vim-scripts/AutoComplPop'
 Plug 'vim-scripts/OmniCppComplete'
 Plug 'psf/black'
 Plug 'wesleyche/SrcExpl'
+Plug 'metakirby5/codi.vim'
+Plug 'honza/vim-snippets'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'airblade/vim-gitgutter'
+Plug 'preservim/tagbar'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'voldikss/vim-floaterm'
+
 " for python
 call plug#end()
