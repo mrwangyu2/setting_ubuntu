@@ -10,7 +10,7 @@ set diffopt+=iwhite                " Ignore whitespace changes (focus on code ch
 set gdefault                       " regex /g by default
 set hid                            " you can change buffers without saving
 set nostartofline                  " don't jump to first character when paging
-set printoptions=paper:a4,syntax:n " controls the default paper size and the printing of syntax highlighting (:n -> none)
+" set printoptions=paper:a4,syntax:n " controls the default paper size and the printing of syntax highlighting (:n -> none)
 set report=0                       " tell us when anything is changed via :...0
 set switchbuf=useopen              " reveal already opened files from the quickfix window instead of opening new buffers
 set ttyfast                        " smoother changes
@@ -87,7 +87,6 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 set listchars=tab:▸\ ,eol:¬,trail:⋅
 
 
-
 " Files, backups and undo
 " Turn backup off, since most stuff are in git anyway...
 set nobackup
@@ -162,13 +161,14 @@ map <C-w>z <C-W>_<C-W><bar>
 " color scheme
 set t_Co=256
 syntax on
-"set termguicolors
+" set termguicolors
 colorscheme onedark
+"colorscheme desert
 
 " set color of popup windows
 "highlight Pmenu ctermfg =black ctermbg=gray
 "highlight Pmenu ctermfg =black ctermbg=8
-highlight Pmenu ctermfg=black ctermbg=gray guibg=gray
+"highlight Pmenu ctermfg=black ctermbg=gray guibg=gray
 
 "highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
 "highlight Lf_hl_matchRefine gui=bold guifg=Magenta cterm=bold ctermfg=201
@@ -176,4 +176,6 @@ highlight Pmenu ctermfg=black ctermbg=gray guibg=gray
 "set python
 "set pyxversion=3
 "g:python3_host_prog="/usr/bin/python3"
+nnoremap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
+
 
