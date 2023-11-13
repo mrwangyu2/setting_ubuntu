@@ -8,6 +8,8 @@ function system_update(){
     Source_File="sources.list.ubuntu18.04"
   elif [[ $ret = 20 ]]; then
     Source_File="sources.list.ubuntu20.04"
+  elif [[ $ret = 22 ]]; then
+    Source_File="sources.list.ubuntu22.04"
   fi
   superuser_do cp ./data/${Source_File} /etc/apt/sources.list
   superuser_do apt update

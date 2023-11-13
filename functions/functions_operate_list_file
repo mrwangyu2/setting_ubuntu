@@ -105,17 +105,17 @@ function git_clone_from_list_old(){
 function git_clone_from_list(){
 	echo_message title "Starting clone ${1}..."
 	LIST=$(dirname "$0")'/data/'${2}'.list'
-
-	cat "$LIST" | while read PACKAGE
-	do
+	
+	IFS=$'\n'
+	for PACKAGE in $(cat $LIST); do
 		echo_message info "Project $PACKAGE is cloning..."
 		eval sudo git clone "$PACKAGE"
 		if [[ $? != 0 ]]; then
 			echo_message error "Cancel: git clone $PACKAGE"
-      		else
-        		echo_message info "$PACKAGE is cloned."
-      		fi
-	done
+		else
+			echo_message info "$PACKAGE is cloned."
+		fi
+	done < $LIST
 
 	echo_message success "Cloned of $1 complete."
 	pause_process
