@@ -6,7 +6,7 @@ tmuxp
 tree
 zsh
 autojump
-ctags
+universal-ctags
 cscope
 libboost-all-dev
 samba
