@@ -1,11 +1,12 @@
 build-essential
 libncurses5-dev
+cmake
 tmux
 tmuxp
 tree
 zsh
 autojump
-ctags
+universal-ctags
 cscope
 libboost-all-dev
 samba
@@ -14,3 +15,5 @@ ack
 silversearcher-ag
 global
 python3-pip
+unzip
+npm

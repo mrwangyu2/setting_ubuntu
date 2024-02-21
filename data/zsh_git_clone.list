@@ -4,5 +4,3 @@ https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh
 https://github.com/Aloxaf/fzf-tab ~/.oh-my-zsh/custom/plugins/fzf-tab
 --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-

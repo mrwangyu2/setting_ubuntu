@@ -2,7 +2,7 @@
 
 ALL_PLUGIN=""
 function configure_zsh(){
-  echo_message header "Starting configure_zsh fucntions"
+  echo_message header "Starting configure_zsh functions"
   check_zsh_for_oh-my
   if [[ $? = 0 ]]; then
     install_oh-my-zsh
@@ -41,7 +41,8 @@ function install_oh-my-zsh(){
   echo_message header "Starting install_oh-my-zsh function"
   echo_message info "You will install oh-my-zsh. After installed, please exit zsh to continue setting zsh :)"
   #sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-  sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+  # sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+  sh -c "$(curl -fsL http://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
   if [[ $? = 0 ]]; then
     echo_message success "oh-my-zsh installed. :)"
@@ -92,6 +93,7 @@ function get_all_zsh_plugins(){
       ALL_PLUGINS="${ALL_PLUGINS} $PLUGIN"
   done
   echo_message info "Plugins: $ALL_PLUGINS"
+  pause_process
 }
 
 function setting_zsh_plugins(){
@@ -104,6 +106,8 @@ function setting_zsh_plugins(){
     sed -i "${line}s/.*/plugins=(${ALL_PLUGINS})/g" ~/.zshrc
 
     echo "source ~/.oh-my-zsh/custom/plugins/fzf-tab/fzf-tab.plugin.zsh" >> ~/.zshrc
+    echo 'alias tmux="TERM=screen-256color-bce tmux"' >> ~/.zshrc 
+    echo 'source ~/.profile' >> ~/.zshrc
     pause_process
   else
     echo_message error "Error: .zshrc isn't existion."
@@ -117,7 +121,7 @@ function change_oh-my-zsh_permission(){
 
 function install_fzf(){
   superuser_do chown -R frank:frank ~/.fzf 
-  if [[ ! -f ~/.fzf/bin/fzf ]]; then
+  if [[ -f ~/.fzf/bin/fzf ]]; then
     ~/.fzf/install
   fi
 }
