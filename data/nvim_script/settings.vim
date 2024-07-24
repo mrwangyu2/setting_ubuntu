@@ -17,6 +17,7 @@ set ttyfast                        " smoother changes
 set viminfo='20,\"80               " read/write a .viminfo file, don't store more
 set virtualedit=onemore            " Allow for cursor beyond last character
 " set shortmess+=filmnrxoOtT         " Abbrev. of messages (avoids 'hit enter')
+set cc=80
 set cursorline
 set viewoptions=cursor,folds,slash,unix
 set hlsearch
@@ -90,6 +91,7 @@ set listchars=tab:▸\ ,eol:¬,trail:⋅
 " Files, backups and undo
 " Turn backup off, since most stuff are in git anyway...
 set nobackup
+set nowritebackup
 set nowb
 set noswapfile
 " enable persistent undo

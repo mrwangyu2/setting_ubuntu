@@ -64,11 +64,11 @@ noremap <silent> <leader>ro :AsyncStop<CR>
 noremap <silent> <leader>nh :noh<CR>
 
 " gen_tags
-let g:gen_tags#gtags_default_map = 1
-noremap <silent> <leader>ct :GenCtags<CR>
-noremap <silent> <leader>cs :GenGTAGS<CR>
-noremap <silent> <leader>cct :ClearCtags<CR>
-noremap <silent> <leader>ccs :ClearGTAGS<CR>
+"let g:gen_tags#gtags_default_map = 1
+"noremap <silent> <leader>ct :GenCtags<CR>
+"noremap <silent> <leader>cs :GenGTAGS<CR>
+"noremap <silent> <leader>cct :ClearCtags<CR>
+"noremap <silent> <leader>ccs :ClearGTAGS<CR>
 
 " browse old file
 noremap <silent> <leader>h :browse oldfiles<CR>
@@ -90,10 +90,15 @@ noremap <silent> <leader>ad :GenDeclaration<CR>
 noremap <silent> <leader>ai :GenDefinition<CR>
 
 " Ultisnips
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/ultisnips']
+"let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/ultisnips']
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
 
 " Codi
 noremap <silent> <leader>i :Codi<CR>
@@ -155,4 +160,52 @@ let g:nvimgdb_config_override = {
 lua require('lsp/setup')
 
 " cmp
-lua require('lsp/nvim-cmp')
+"lua require('lsp/nvim-cmp')
+
+" todo-comments
+lua require('todo-comments/setup')
+noremap <silent> <leader>td :TodoQuickFix<CR>
+
+" Switch file between .h and .cpp
+nnoremap <silent> <leader>gh :e %:r.h<CR>
+nnoremap <silent> <leader>gc :e %:r.cpp<CR>
+
+"inc-rename
+"lua require("inc_rename/setup")
+"nnoremap  <silent> <leader>rn :IncRename <C-r><C-w>
+
+" treesitter
+"lua require('treesitter/setup')
+
+" gruvbox
+"lua require('gruvbox/setup')
+
+" lualine
+lua require('lualine/setup')
+
+" vim-cpp-enhanced-highlight
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+
+" bufferline
+set termguicolors
+lua require("bufferline/setup")
+" 切换到下一个缓冲区
+nnoremap <silent> <TAB> :BufferLineCycleNext<CR>
+" 切换到上一个缓冲区
+nnoremap <silent> <S-TAB> :BufferLineCyclePrev<CR>
+" 关闭当前缓冲区
+nnoremap <silent> <leader>bd :bdelete<CR>
+
+" lualine
+lua require('comment/setup')
+
+
+" vim-ai
+"let g:vim_ai_chat['options']['model'] = 'gpt-4'
+"let g:vim_ai_chat['options']['temperature'] = 0.2
