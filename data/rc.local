@@ -1,6 +1,0 @@
-#!/bin/bash
-echo "This is rc.local" >> /home/niki/rc
-#service frpc start
-cd /opt/frp
-./frpc
-exit 0
