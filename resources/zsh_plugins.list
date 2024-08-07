@@ -1,0 +1,13 @@
+sudo apt install zsh
+sh -c "$(curl -fsL http://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sudo mv /root/.oh-my-zsh ~/.
+sudo chown -R frank:frank ~/.oh-my-zsh 
+sudo apt install autojump
+git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/Aloxaf/fzf-tab ~/.oh-my-zsh/custom/plugins/fzf-tab
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+cp resources/zshrc.zsh-template ~/.zshrc
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim

@@ -1,0 +1,8 @@
+sudo apt install tmux
+sudo apt install tmuxp
+sudo apt install xterm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+sudo chown -R frank:frank ~/.tmux 
+cp resources/tmux_script/tmux.conf ~/.tmux.conf
+~/.tmux/plugins/tpm/bin/install_plugins
+cp resources/tmux_script/default.sh ~/.tmux/plugins/tmux-powerline/themes/.

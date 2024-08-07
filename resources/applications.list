@@ -1,0 +1,16 @@
+sudo apt install build-essential
+sudo apt install libncurses5-dev
+sudo apt install cmake
+sudo apt install tree
+sudo apt install libboost-all-dev
+sudo apt install samba
+sudo apt install ack
+sudo apt install silversearcher-ag
+sudo apt install python3-pip
+sudo apt install unzip
+sudo apt install git
+sudo apt install curl
+sudo apt install wget
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+sudo apt install lua5.1 liblua5.1-dev
