@@ -1,7 +1,5 @@
 sudo apt install zsh
-sh -c "$(curl -fsL http://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-sudo mv /root/.oh-my-zsh ~/.
-sudo chown -R frank:frank ~/.oh-my-zsh 
+sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
 sudo apt install autojump
 git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
