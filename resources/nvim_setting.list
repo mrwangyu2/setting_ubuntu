@@ -14,6 +14,7 @@ pip3 install --user jedi
 pip3 install --user black
 pip3 install --user isort
 pip3 install --user ipdb
+sudo npm install -g pyright
 sudo apt install clangd-15
 export PATH=$PATH:/usr/lib/llvm-15/bin
 nvim -c 'PlugInstall' -c 'qall'

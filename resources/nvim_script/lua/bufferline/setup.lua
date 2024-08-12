@@ -1,56 +1,55 @@
--- 初始化 packer
-require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'  -- Packer 管理器本身
-
-  -- 安装 bufferline 插件
-  use {
-    'akinsho/bufferline.nvim',
-    tag = "v3.*",  -- 使用最新的v3版本
-    requires = 'nvim-tree/nvim-web-devicons', -- 图标支持
-    config = function()
-      require("bufferline").setup {
-        options = {
-          numbers = "both", -- 显示缓冲区编号
-          close_command = "bdelete! %d", -- 关闭缓冲区命令
-          right_mouse_command = "bdelete! %d", -- 右键关闭缓冲区命令
-          left_mouse_command = "buffer %d", -- 左键切换缓冲区命令
-          middle_mouse_command = nil, -- 中键命令
-          indicator = {
-            icon = '▎', -- 图标
-            style = 'icon',
-          },
-          buffer_close_icon = '',
-          modified_icon = '●',
-          close_icon = '',
-          left_trunc_marker = '',
-          right_trunc_marker = '',
-          max_name_length = 18,
-          max_prefix_length = 15, -- 缓冲区名称前缀最大长度
-          tab_size = 18,
-          diagnostics = "nvim_lsp", -- 启用LSP诊断信息
-          diagnostics_update_in_insert = false,
-          offsets = {
-            {
-              filetype = "NvimTree",
-              text = "File Explorer",
-              highlight = "Directory",
-              text_align = "left",
-            }
-          },
-          show_buffer_icons = true, -- 显示缓冲区图标
-          show_buffer_close_icons = true, -- 显示缓冲区关闭图标
-          show_close_icon = true, -- 显示关闭图标
-          show_tab_indicators = true, -- 显示标签指示器
-          persist_buffer_sort = true, -- 持续缓冲区排序
-          separator_style = "thin", -- 分隔符样式
-          enforce_regular_tabs = false,
-          always_show_bufferline = true,
-          sort_by = 'id', -- 排序方式
-        }
+require('bufferline').setup {
+  options = {
+    mode = "buffers", -- 设定 buffer 显示模式
+    numbers = "ordinal", -- 在 buffer 标签上显示数字
+    diagnostics = "nvim_lsp", -- 显示 LSP 诊断信息
+    separator_style = "slant", -- 设置分隔符样式为倾斜风格
+    show_buffer_icons = false,   -- 开启文件类型图标显示
+    show_buffer_close_icons = true, -- 是否显示关闭图标
+    show_close_icon = false, -- 是否显示总的关闭图标
+    enforce_regular_tabs = false, -- 禁用等宽标签
+    always_show_bufferline = true, -- 一直显示 bufferline
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "File Explorer",
+        highlight = "Directory",
+        text_align = "left",
       }
-    end
-  }
+    },
+    -- 自定义图标设置
+    custom_areas = {
+      right = function()
+        local result = {}
+        local error = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+        local warning = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+        if #error ~= 0 then
+          table.insert(result, { text = "  " .. #error, guifg = "#EC5241" })
+        end
+        if #warning ~= 0 then
+          table.insert(result, { text = "  " .. #warning, guifg = "#EFB839" })
+        end
+        return result
+      end,
+    },
+    -- 自定义颜色配置
+    highlights = {
+      fill = {
+        guifg = '#ffffff',
+        guibg = '#2e3440',
+      },
+      background = {
+        guifg = '#81a1c1',
+        guibg = '#3b4252',
+      },
+      buffer_selected = {
+        guifg = '#88c0d0',
+        guibg = '#434c5e',
+        gui = "bold",
+      },
+      -- 你还可以为其他部分自定义颜色
+    },
 
-  -- 其他插件
-end)
+  }
+}
 
