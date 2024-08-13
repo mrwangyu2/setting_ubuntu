@@ -1,0 +1,12 @@
+[Unit]
+Description=Glances - An eye on your system
+Documentation=https://nicolargo.github.io/glances/
+After=network.target
+
+[Service]
+Environment="PYTHONPATH=/home/frank/.local/lib/python3.10/site-packages"
+ExecStart=/home/frank/.local/bin/glances -s
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
