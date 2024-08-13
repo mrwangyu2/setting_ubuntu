@@ -11,6 +11,9 @@ sudo apt install unzip
 sudo apt install git
 sudo apt install curl
 sudo apt install wget
+sudo apt remove nodejs
+sudo apt remove libnode72
+sudo apt remove libnode-dev
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt install -y nodejs
 sudo apt install lua5.1 liblua5.1-dev
