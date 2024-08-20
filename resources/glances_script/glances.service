@@ -7,6 +7,7 @@ After=network.target
 Environment="PYTHONPATH=/home/frank/.local/lib/python3.10/site-packages"
 ExecStart=/home/frank/.local/bin/glances -s
 Restart=on-failure
+Nice=10
 
 [Install]
 WantedBy=multi-user.target

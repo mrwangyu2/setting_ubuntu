@@ -31,5 +31,6 @@ local on_attach = function(_, bufnr)
 end
 
 lspconfig.clangd.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  cmd = {"clangd", "--background-index=0", "--limit-results=20"}
 }

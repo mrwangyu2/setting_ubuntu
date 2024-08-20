@@ -15,8 +15,9 @@ pip3 install --user black
 pip3 install --user isort
 pip3 install --user ipdb
 sudo npm install -g pyright
-sudo apt install clangd-15
+sudo apt install clangd
 sudo apt install ripgrep
+echo "export PATH=\$PATH:/usr/lib/llvm-15/bin" >> ~/.zshrc
 export PATH=$PATH:/usr/lib/llvm-15/bin
 nvim -c 'PlugInstall' -c 'qall'
 nvim -c 'LspInstall clangd' -c 'qall'
