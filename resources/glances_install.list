@@ -1,9 +1,2 @@
-pip3 install fastapi uvicorn
 pip3 install glances
-mkdir -p ~/.config/glances
-cp -f resources/glances_script/glances.conf ~/.config/glances/.
-sudo cp resources/glances_script/glances.service /etc/systemd/system/.
-sudo systemctl daemon-reload
-sudo systemctl start glances
-sudo systemctl enable glances
-sudo systemctl status glances
+pip3 install fastapi uvicorn
