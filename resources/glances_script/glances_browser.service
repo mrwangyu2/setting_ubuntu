@@ -1,0 +1,16 @@
+[Unit]
+Description=Gotty Glances Web Service
+After=network.target
+
+[Service]
+Environment="TERM=linux"
+Environment="TERMINFO=/etc/terminfo"
+Environment="PYTHONPATH=/home/frank/.local/lib/python3.10/site-packages"
+Environment="GOPATH=/home/frank/go"
+WorkingDirectory=/home/frank
+ExecStart=/usr/bin/gotty -p 8960 -w /home/frank/.local/bin/glances --browser --config /home/frank/.config/glances/glances.conf
+Restart=on-failure
+Nice=10
+
+[Install]
+WantedBy=multi-user.target

@@ -3,3 +3,4 @@ pip3 install fastapi uvicorn
 sudo cp -f resources/glances_script/glances.service /etc/systemd/system/.
 mkdir -p ~/.config/glances
 sudo cp -f resources/glances_script/glances.conf ~/.config/glances/.
+sudo cp -f resources/glances_script/gotty /usr/bin/.
