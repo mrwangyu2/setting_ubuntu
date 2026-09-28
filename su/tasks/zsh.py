@@ -30,7 +30,10 @@ def run(ctx):
     if os.path.isdir(omz):
         log.ok("oh-my-zsh already installed")
     else:
-        sh.run('RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL %s)"' % OMZ_INSTALLER)
+        sh.run(
+            'RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL %s)"' % OMZ_INSTALLER,
+            retries=3,
+        )
 
     for name, url in PLUGINS:
         fileutil.ensure_git(sh, url, os.path.join(omz, "custom/plugins", name))
@@ -40,7 +43,7 @@ def run(ctx):
     if os.path.exists(os.path.join(fzf, "bin", "fzf")):
         log.ok("fzf already built")
     else:
-        sh.run([os.path.join(fzf, "install"), "--all", "--no-update-rc"])
+        sh.run([os.path.join(fzf, "install"), "--all", "--no-update-rc"], retries=2)
 
     fileutil.ensure_copy(
         sh, ctx.resource("zshrc.zsh-template"), os.path.join(home, ".zshrc"), protect=True

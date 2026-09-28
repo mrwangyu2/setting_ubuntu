@@ -43,6 +43,13 @@ def build_parser():
         help="pip mirror (default: same as --mirror)",
     )
     parser.add_argument("--timezone", default="Asia/Shanghai", help="system timezone")
+    parser.add_argument(
+        "--proxy",
+        default=None,
+        metavar="URL",
+        help="HTTP(S) proxy for git/curl/pip/apt, e.g. http://192.168.3.10:7897 "
+        "(default: $https_proxy / $http_proxy)",
+    )
     parser.add_argument("--user", default=None, help="target user (default: invoking user)")
     parser.add_argument("--home", default=None, help="target home (default: from the user)")
     parser.add_argument(
@@ -121,7 +128,12 @@ def main(argv):
     if args.dry_run:
         log.info("dry-run: no changes will be made")
 
-    runner = Runner(dry_run=args.dry_run, assume_yes=args.yes, verbose=args.verbose)
+    runner = Runner(
+        dry_run=args.dry_run,
+        assume_yes=args.yes,
+        verbose=args.verbose,
+        proxy=args.proxy,
+    )
     options = Options(
         mirror=args.mirror,
         pypi_mirror=args.pypi_mirror,

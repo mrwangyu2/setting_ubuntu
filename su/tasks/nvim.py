@@ -47,7 +47,7 @@ def run(ctx):
     if os.path.exists(plug):
         log.ok("vim-plug already installed")
     else:
-        sh.run(["curl", "-fLo", plug, "--create-dirs", PLUG_URL])
+        sh.run(["curl", "-fLo", plug, "--create-dirs", PLUG_URL], retries=3)
 
     sh.run(["nvim", "--headless", "-c", "PlugInstall", "-c", "qall"], check=False)
     pip.install_user(sh, ctx.system, fileutil.read_list(ctx.resource("lists/nvim-pip.txt")))

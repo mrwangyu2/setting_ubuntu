@@ -163,5 +163,44 @@ class MirrorsTest(unittest.TestCase):
         self.assertIn("aliyun", mirrors.PYPI_MIRRORS)
 
 
+class ProxyTest(unittest.TestCase):
+    def test_apt_proxy_args_strip_trailing_slash(self):
+        args = Runner(proxy="http://192.168.3.10:7897/").apt_proxy_args()
+        self.assertIn("Acquire::http::Proxy=http://192.168.3.10:7897", args)
+        self.assertIn("Acquire::https::Proxy=http://192.168.3.10:7897", args)
+
+    def test_proxy_is_injected_into_child_environment(self):
+        sh = Runner(proxy="http://192.168.3.10:7897")
+        self.assertEqual(sh.capture(["printenv", "https_proxy"]), "http://192.168.3.10:7897")
+        self.assertEqual(sh.capture(["printenv", "http_proxy"]), "http://192.168.3.10:7897")
+
+    def test_no_proxy_means_no_apt_options(self):
+        keys = ("https_proxy", "http_proxy", "all_proxy", "HTTPS_PROXY", "HTTP_PROXY")
+        saved = dict((k, os.environ.pop(k, None)) for k in keys)
+        try:
+            self.assertEqual(Runner(proxy=None).apt_proxy_args(), [])
+            self.assertIsNone(Runner(proxy=None)._env())
+        finally:
+            for key, value in saved.items():
+                if value is not None:
+                    os.environ[key] = value
+
+
+class RetryTest(unittest.TestCase):
+    def test_retries_until_success(self):
+        directory = tempfile.mkdtemp()
+        marker = os.path.join(directory, "attempts")
+        script = (
+            "n=$(cat %s 2>/dev/null || echo 0); n=$((n+1)); echo $n > %s; "
+            "[ $n -ge 3 ]" % (marker, marker)
+        )
+        rc, _ = Runner().run(
+            ["bash", "-c", script], retries=5, retry_delay=0, quiet=True
+        )
+        self.assertEqual(rc, 0)
+        with open(marker) as handle:
+            self.assertEqual(handle.read().strip(), "3")
+
+
 if __name__ == "__main__":
     unittest.main()

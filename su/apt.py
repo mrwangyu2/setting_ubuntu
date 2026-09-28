@@ -20,7 +20,7 @@ def update(sh, force=False):
     if sh.apt_updated and not force:
         log.skip("apt metadata already refreshed")
         return
-    sh.run(["apt-get", "update"], sudo=True)
+    sh.run(["apt-get"] + sh.apt_proxy_args() + ["update"], sudo=True)
     sh.apt_updated = True
 
 
@@ -33,7 +33,7 @@ def ensure_installed(sh, packages):
         log.ok("already installed: %s" % ", ".join(packages))
         return
     log.info("installing: %s" % ", ".join(todo))
-    sh.run(["apt-get", "install", "-y"] + todo, sudo=True)
+    sh.run(["apt-get"] + sh.apt_proxy_args() + ["install", "-y"] + todo, sudo=True)
 
 
 def _same_file(a, b):
@@ -59,7 +59,12 @@ def add_key(sh, url, keyring):
     handle, dearmoured = tempfile.mkstemp()
     os.close(handle)
     try:
-        rc, _ = sh.run(["curl", "-fsSL", url, "-o", downloaded], check=False, quiet=True)
+        rc, _ = sh.run(
+            ["curl", "-fsSL", url, "-o", downloaded],
+            check=False,
+            quiet=True,
+            retries=3,
+        )
         if rc != 0:
             if os.path.exists(keyring):
                 log.warn("could not refresh %s; keeping existing keyring" % keyring)

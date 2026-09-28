@@ -138,11 +138,11 @@ def ensure_git(sh, url, dest, update=False):
     """Clone a repo if absent; optionally fast-forward an existing clone."""
     if os.path.isdir(os.path.join(dest, ".git")):
         if update:
-            sh.run(["git", "-C", dest, "pull", "--ff-only"], check=False)
+            sh.run(["git", "-C", dest, "pull", "--ff-only"], check=False, retries=3)
         else:
             log.skip("already cloned: %s" % dest)
         return False
-    sh.run(["git", "clone", "--depth", "1", url, dest])
+    sh.run(["git", "clone", "--depth", "1", url, dest], retries=3)
     return True
 
 

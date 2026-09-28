@@ -53,6 +53,14 @@ WantedBy=multi-user.target
 """
 
 
+def _pip(sh, *args):
+    """pip inside the venv; --proxy covers sudo resetting the environment."""
+    cmd = [VENV + "/bin/pip"] + list(args)
+    if sh.proxy:
+        cmd += ["--proxy", sh.proxy]
+    return cmd
+
+
 def run(ctx):
     sh = ctx.sh
     apt.ensure_installed(sh, ["python3-venv"])
@@ -61,8 +69,12 @@ def run(ctx):
         log.ok("glances venv already present")
     else:
         sh.run(["python3", "-m", "venv", VENV], sudo=True)
-        sh.run([VENV + "/bin/pip", "install", "--upgrade", "pip"], sudo=True, check=False)
-        sh.run([VENV + "/bin/pip", "install", "glances", "fastapi", "uvicorn"], sudo=True)
+        sh.run(_pip(sh, "install", "--upgrade", "pip"), sudo=True, check=False, retries=2)
+        sh.run(
+            _pip(sh, "install", "glances", "fastapi", "uvicorn"),
+            sudo=True,
+            retries=3,
+        )
 
     fileutil.ensure_binary(sh, ctx.resource("glances_script", "gotty"), GOTTY)
     fileutil.ensure_copy(

@@ -34,7 +34,7 @@ def run(ctx):
             "https://github.com/dundee/gdu/releases/latest/download/"
             "gdu_linux_%s.tgz" % arch
         )
-        sh.run(["curl", "-fL", url, "-o", os.path.join(tmp, "gdu.tgz")])
+        sh.run(["curl", "-fL", url, "-o", os.path.join(tmp, "gdu.tgz")], retries=3)
         sh.run(["tar", "-xzf", os.path.join(tmp, "gdu.tgz"), "-C", tmp])
         sh.run(["install", "-m", "0755", os.path.join(tmp, "gdu_linux_%s" % arch), DEST], sudo=True)
     finally:

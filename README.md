@@ -26,6 +26,7 @@ neovim、Docker、Syncthing、Glances、gdu。
 | `--mirror aliyun` | apt 镜像：`aliyun`(默认) / `tuna` / `ustc` / `cn` / `official` |
 | `--pypi-mirror aliyun` | pip 镜像，默认跟随 `--mirror` |
 | `--timezone Asia/Shanghai` | 时区 |
+| `--proxy http://host:port` | 所有网络命令走代理（默认读 `$https_proxy`/`$http_proxy`） |
 | `--hosts-entry "IP HOST"` | 可重复；把静态主机名写进 `/etc/hosts`（`hosts` 任务） |
 | `--upgrade` | 刷新 gdu 这类独立二进制 |
 | `--force` | 在非 18.04/22.04/26.04 上继续 |
@@ -102,6 +103,27 @@ tests/test_setting_ubuntu.py   纯离线单元测试
 - **不再单独装 `npm`**：NodeSource 的 `nodejs` 已自带 npm。
 - **不再硬编码用户 `frank`**：用户名来自 `SUDO_USER` / 当前用户，home 来自 `pwd`；
   以 root 直接运行且未指定 `--user` 时会告警。
+
+## 网络 / 代理
+
+如果本机 DNS 不可用（例如被 WireGuard 抢了默认 DNS），`git clone`、`curl`、`pip` 会
+`Could not resolve host`。让 `setup.py` 统一走代理即可：
+
+```bash
+./setup.py run --proxy http://192.168.3.10:7897
+# 或先导出，脚本会自动继承：
+export https_proxy=http://192.168.3.10:7897 http_proxy=http://192.168.3.10:7897
+./setup.py run
+```
+
+- `git` / `curl` / `pip` / `npm` 通过 `http_proxy`/`https_proxy`/`all_proxy` 环境变量走代理。
+- `apt` 不读环境变量（且 `sudo` 会清空环境），所以脚本改用
+  `-o Acquire::http::Proxy=... -o Acquire::https::Proxy=...` 传给每条 `apt-get`。
+- `sudo` 下的 `pip` 同理不受环境变量影响，脚本改用 `pip --proxy <url>`。
+- 网络命令（`git clone`、`curl` 下载、`pip` 安装、oh-my-zsh 安装器）会自动重试 3 次
+  （间隔 2 秒），以应对本机代理偶发的 `TLS connect error: unexpected eof`。
+- 已知例外：`nvim` 任务在 18.04/22.04 上会调用 `add-apt-repository` 加 PPA，该命令既不吃
+  环境变量也不吃 `-o`；若那一步因网络失败，可先手动配好 apt 代理再重跑。
 
 ## 测试与手动验证
 

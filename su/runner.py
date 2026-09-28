@@ -3,6 +3,7 @@
 import os
 import subprocess
 import sys
+import time
 
 from . import log
 
@@ -25,15 +26,55 @@ def _render(argv):
 
 
 class Runner:
-    """Runs commands. The only object that knows about sudo and --dry-run."""
+    """Runs commands. The only object that knows about sudo, --dry-run and
+    the outbound proxy."""
 
-    def __init__(self, dry_run=False, assume_yes=False, verbose=False):
+    def __init__(self, dry_run=False, assume_yes=False, verbose=False, proxy=None):
         self.dry_run = dry_run
         self.assume_yes = assume_yes
         self.verbose = verbose
+        # Fall back to the environment so `export https_proxy=...` is enough.
+        self.proxy = (
+            proxy
+            or os.environ.get("https_proxy")
+            or os.environ.get("http_proxy")
+            or os.environ.get("all_proxy")
+        )
         # Set by apt.update(); cleared by apt.ensure_repo() and mark_apt_stale()
         # so a changed repository is picked up before the next install.
         self.apt_updated = False
+
+    # -- proxy ---------------------------------------------------------
+    def _env(self):
+        """Environment for spawned processes (git/curl/pip/npm honour these)."""
+        if not self.proxy:
+            return None
+        env = dict(os.environ)
+        for key in (
+            "http_proxy",
+            "https_proxy",
+            "all_proxy",
+            "HTTP_PROXY",
+            "HTTPS_PROXY",
+            "ALL_PROXY",
+        ):
+            env[key] = self.proxy
+        env.setdefault("no_proxy", "localhost,127.0.0.1,::1")
+        env.setdefault("NO_PROXY", env["no_proxy"])
+        return env
+
+    def apt_proxy_args(self):
+        """apt ignores the environment, so the proxy is passed as -o options.
+        sudo also resets the environment, so this works where env would not."""
+        if not self.proxy:
+            return []
+        url = self.proxy.rstrip("/")
+        return [
+            "-o",
+            "Acquire::http::Proxy=%s" % url,
+            "-o",
+            "Acquire::https::Proxy=%s" % url,
+        ]
 
     # -- apt cache -----------------------------------------------------
     def mark_apt_stale(self):
@@ -50,9 +91,23 @@ class Runner:
         return argv
 
     # -- running -------------------------------------------------------
-    def run(self, cmd, check=True, sudo=False, capture=False, quiet=False, cwd=None):
+    def run(
+        self,
+        cmd,
+        check=True,
+        sudo=False,
+        capture=False,
+        quiet=False,
+        cwd=None,
+        env=None,
+        retries=1,
+        retry_delay=2,
+    ):
         """Run cmd. Returns (returncode, output). Raises CommandError when
-        check=True and the command fails."""
+        check=True and the command fails.
+
+        retries>1 retries transient failures (network flakiness) with a fixed
+        delay; used for git/curl/pip calls."""
         argv = self.argv(cmd, sudo=sudo)
         rendered = _render(argv)
         if self.dry_run:
@@ -65,7 +120,20 @@ class Runner:
         if capture:
             kwargs["stdout"] = subprocess.PIPE
             kwargs["stderr"] = subprocess.STDOUT
-        proc = subprocess.run(argv, cwd=cwd, universal_newlines=True, **kwargs)
+        child_env = self._env() if env is None else env
+        proc = None
+        for attempt in range(1, retries + 1):
+            proc = subprocess.run(
+                argv, cwd=cwd, universal_newlines=True, env=child_env, **kwargs
+            )
+            if proc.returncode == 0:
+                break
+            if attempt < retries:
+                log.warn(
+                    "attempt %d/%d failed (rc=%s), retrying in %ss"
+                    % (attempt, retries, proc.returncode, retry_delay)
+                )
+                time.sleep(retry_delay)
         out = proc.stdout or ""
         if capture and self.verbose and out:
             sys.stdout.write(out)
