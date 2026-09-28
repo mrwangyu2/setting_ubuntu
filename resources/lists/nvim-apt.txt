@@ -1,0 +1,7 @@
+# apt packages for the nvim task.
+# python3-neovim is intentionally absent: it is not packaged on 26.04, so the
+# Python provider is installed with pip instead (see nvim-pip.txt).
+# clangd / ripgrep replace the old, now-removed nvim LspInstall flow.
+neovim
+clangd
+ripgrep

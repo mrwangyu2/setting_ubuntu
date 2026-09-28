@@ -1,0 +1,4 @@
+# apt packages for the tmux task. tpm and the plugins live under ~/.tmux.
+tmux
+tmuxp
+xterm

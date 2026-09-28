@@ -1,0 +1,21 @@
+# Common apt packages installed by the base-packages task.
+# One package per line; '#' starts a comment.
+build-essential
+libncurses-dev
+cmake
+tree
+libboost-all-dev
+samba
+ack
+silversearcher-ag
+python3-pip
+python3-venv
+unzip
+git
+curl
+wget
+lua5.1
+wireguard
+golang-go
+mosh
+software-properties-common

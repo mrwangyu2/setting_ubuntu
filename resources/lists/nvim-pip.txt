@@ -1,0 +1,6 @@
+# Python packages for neovim, installed with `pip install --user`.
+pynvim
+jedi
+black
+isort
+ipdb

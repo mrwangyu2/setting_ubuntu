@@ -1,0 +1,4 @@
+# apt packages for the zsh task. oh-my-zsh and its plugins are cloned, not
+# packaged, and are handled in su/tasks/zsh.py.
+zsh
+autojump
