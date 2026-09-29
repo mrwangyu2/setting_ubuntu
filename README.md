@@ -49,6 +49,7 @@ neovim、Docker、Syncthing、Glances、gdu。
 | `syncthing` | 官方源安装并 `systemctl enable --now syncthing@<user>` |
 | `glances` | 在 `/opt/glances` 建 venv，装成 server + gotty web 终端两个 systemd 服务 |
 | `gdu` | 安装磁盘占用分析工具 `gdu` |
+| `fish` | fish + fisher 插件管理器 + fish-ai (对接 deepseek/new-api) + 受管配置 |
 | `zsh` | zsh + oh-my-zsh + 插件 + fzf + 受管 `.zshrc` |
 | `tmux` | tmux + tpm + 插件 + 受管 `~/.tmux.conf` |
 | `nvim` | neovim + 配置 + vim-plug + Python provider |

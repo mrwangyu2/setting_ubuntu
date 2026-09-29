@@ -1,0 +1,7 @@
+# apt packages for the fish task.
+# fish-ai uses python3-venv / python3-pip to set up its isolated virtual environment.
+fish
+python3-venv
+python3-pip
+curl
+jq
