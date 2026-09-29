@@ -19,7 +19,6 @@ def all_tasks():
         glances,
         gdu,
         fish,
-        zsh,
         tmux,
         nvim,
     )
@@ -36,7 +35,6 @@ def all_tasks():
         glances,
         gdu,
         fish,
-        zsh,
         tmux,
         nvim,
     ]

@@ -116,8 +116,8 @@ class FileutilTest(unittest.TestCase):
     def test_read_list_skips_comments_and_blanks(self):
         path = os.path.join(self.dir, "list.txt")
         with open(path, "w") as handle:
-            handle.write("# comment\n\nzsh\n  git  # trailing\n")
-        self.assertEqual(fileutil.read_list(path), ["zsh", "git"])
+            handle.write("# comment\n\nfish\n  git  # trailing\n")
+        self.assertEqual(fileutil.read_list(path), ["fish", "git"])
 
     def test_ensure_binary_compares_bytes(self):
         src = os.path.join(self.dir, "src.bin")

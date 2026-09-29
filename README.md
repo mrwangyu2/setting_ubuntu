@@ -1,6 +1,6 @@
 # setting_ubuntu
 
-把一台全新的 Ubuntu 工作站配置成能用的一台机器：apt 镜像、常用软件、zsh / tmux /
+把一台全新的 Ubuntu 工作站配置成能用的一台机器：apt 镜像、常用软件、fish / tmux /
 neovim、Docker、Syncthing、Glances、gdu。
 
 - **支持版本**：Ubuntu **18.04 / 22.04 / 26.04**（其它版本加 `--force` 可尝试）
@@ -50,7 +50,6 @@ neovim、Docker、Syncthing、Glances、gdu。
 | `glances` | 在 `/opt/glances` 建 venv，装成 server + gotty web 终端两个 systemd 服务 |
 | `gdu` | 安装磁盘占用分析工具 `gdu` |
 | `fish` | fish + fisher 插件管理器 + fish-ai (对接 deepseek/new-api) + 受管配置 |
-| `zsh` | zsh + oh-my-zsh + 插件 + fzf + 受管 `.zshrc` |
 | `tmux` | tmux + tpm + 插件 + 受管 `~/.tmux.conf` |
 | `nvim` | neovim + 配置 + vim-plug + Python provider |
 
@@ -74,7 +73,7 @@ resources/
   nvim_script/          neovim 配置（原样保留）
   tmux_script/          tmux 配置
   glances_script/       glances.conf 与 gotty 二进制
-  zshrc.zsh-template    .zshrc 模板
+  fish_script/          fish 配置与 fish-ai 配置模板
 tests/test_setting_ubuntu.py   纯离线单元测试
 ```
 
@@ -100,7 +99,9 @@ tests/test_setting_ubuntu.py   纯离线单元测试
   neovim < 0.9 时自动加 `ppa:neovim-ppa/stable`。
 - **去掉 `libncurses5-dev` / `liblua5.1-dev` / `python3-neovim`**：在 26.04 上已不存在，
   分别用 `libncurses-dev` 和 pip 的 `pynvim` 替代。
-- **删除 Vundle 克隆**：neovim 用 vim-plug，Vundle 与 zsh 无关。
+- **删除 Vundle 克隆**：neovim 用 vim-plug。
+- **移除 zsh 任务**：不再安装 zsh / oh-my-zsh / fzf 与 `.zshrc`，交互式 shell 统一由
+  `fish` 任务负责（含 Fisher 与 fish-ai）。
 - **不再单独装 `npm`**：NodeSource 的 `nodejs` 已自带 npm。
 - **不再硬编码用户 `frank`**：用户名来自 `SUDO_USER` / 当前用户，home 来自 `pwd`；
   以 root 直接运行且未指定 `--user` 时会告警。
@@ -121,7 +122,7 @@ export https_proxy=http://192.168.3.10:7897 http_proxy=http://192.168.3.10:7897
 - `apt` 不读环境变量（且 `sudo` 会清空环境），所以脚本改用
   `-o Acquire::http::Proxy=... -o Acquire::https::Proxy=...` 传给每条 `apt-get`。
 - `sudo` 下的 `pip` 同理不受环境变量影响，脚本改用 `pip --proxy <url>`。
-- 网络命令（`git clone`、`curl` 下载、`pip` 安装、oh-my-zsh 安装器）会自动重试 3 次
+- 网络命令（`git clone`、`curl` 下载、`pip` 安装、fisher 插件安装）会自动重试 3 次
   （间隔 2 秒），以应对本机代理偶发的 `TLS connect error: unexpected eof`。
 - 已知例外：`nvim` 任务在 18.04/22.04 上会调用 `add-apt-repository` 加 PPA，该命令既不吃
   环境变量也不吃 `-o`；若那一步因网络失败，可先手动配好 apt 代理再重跑。
